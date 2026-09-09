@@ -374,28 +374,48 @@
             border: 1px solid rgba(226, 232, 240, 0.8);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
 
         .card h3 { font-size: 1.5rem; font-weight: 700; color: var(--brand-blue); margin-bottom: 1rem; }
         .card p { color: var(--text-muted); }
 
-        .card .card-quote {
+        /* CONTENEDOR PARALELO DE DOS TARJETAS */
+        .side-by-side-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+            margin-top: 2rem;
+        }
+
+        /* TARJETA EXTERNA AL COSTADO DERECHO */
+        .side-verse-card {
+            background: var(--accent-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-left: 4px solid var(--brand-gold);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+        }
+
+        .side-verse-card p.quote {
             font-style: italic;
             color: var(--brand-blue);
             font-weight: 600;
-            margin-top: 1.2rem;
-            border-left: 3px solid var(--brand-gold);
-            padding-left: 0.8rem;
-            font-size: 0.9rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        .card .card-verse {
-            font-size: 0.85rem;
+        .side-verse-card p.verse {
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--brand-gold);
             text-align: right;
-            margin-top: 0.4rem;
         }
 
         .section-title {
@@ -530,6 +550,7 @@
             .hero-content-grid, .hero-three-columns { grid-template-columns: 1fr; }
             .mini-cards-grid { grid-template-columns: 1fr; }
             .contact-container { grid-template-columns: 1fr; }
+            .side-by-side-cards { grid-template-columns: 1fr !important; }
         }
 
         @media (max-width: 868px) {
@@ -597,7 +618,7 @@
                     </div>
                 </div>
 
-                <!-- SEGUNDA IMAGEN (ACTUALIZADA) -->
+                <!-- SEGUNDA IMAGEN -->
                 <div class="hero-three-columns">
                     <div class="hero-title-left">
                         <h2>La misión comienza donde termina la comodidad</h2>
@@ -658,7 +679,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN NOSOTROS (ACTUALIZADA) -->
+        <!-- SECCIÓN NOSOTROS -->
         <section id="nosotros" class="page-section">
             <h2 class="section-title">Nuestra Identidad y Fe</h2>
             
@@ -668,34 +689,33 @@
                 <p class="verse">Hechos 2:42</p>
             </div>
 
-            <div class="grid-cards">
+            <div class="grid-cards" style="margin-bottom: 2rem;">
                 <div class="card">
-                    <div>
-                        <h3>Fundamentados en la Palabra</h3>
-                        <p>Reconocemos la Biblia como la voluntad escrita de Dios y nuestra autoridad suprema de fe y conducta (2 Timoteo 3:16). Buscamos enseñar la verdad del Evangelio con fidelidad y aplicarla al día a día.</p>
-                    </div>
+                    <h3>Fundamentados en la Palabra</h3>
+                    <p>Reconocemos la Biblia como la voluntad escrita de Dios y nuestra autoridad suprema de fe y conducta (2 Timoteo 3:16). Buscamos enseñar la verdad del Evangelio con fidelidad y aplicarla al día a día.</p>
                 </div>
                 <div class="card">
-                    <div>
-                        <h3>Comunión y Amor Fraterno</h3>
-                        <p>Cristo nos llamó a amarnos unos a otros (Juan 13:34-35). Creemos en una iglesia que camina junta, se apoya en momentos de necesidad y sirve de refugio de gracia y restauración.</p>
-                    </div>
+                    <h3>Comunión y Amor Fraterno</h3>
+                    <p>Cristo nos llamó a amarnos unos a otros (Juan 13:34-35). Creemos en una iglesia que camina junta, se apoya en momentos de necesidad y sirve de refugio de gracia y restauración.</p>
                 </div>
                 <div class="card">
-                    <div>
-                        <h3>Adoración en Espíritu y Verdad</h3>
-                        <p>La adoración trasciende el canto; es un estilo de vida de entrega a Dios (Juan 4:23-24). Nos reunimos para exaltar a Jesús y rendir nuestras vidas en gratitud por su sacrificio.</p>
-                    </div>
+                    <h3>Adoración en Espíritu y Verdad</h3>
+                    <p>La adoración trasciende el canto; es un estilo de vida de entrega a Dios (Juan 4:23-24). Nos reunimos para exaltar a Jesús y rendir nuestras vidas en gratitud por su sacrificio.</p>
                 </div>
+            </div>
+
+            <!-- ESTRUCTURA DE TARJETAS LADO A LADO -->
+            <div class="side-by-side-cards">
+                <!-- TARJETA IZQUIERDA -->
                 <div class="card">
-                    <div>
-                        <h3>Enviados a Servir y Compartir</h3>
-                        <p>Respondemos al mandato de llevar las buenas nuevas y hacer discípulos (Mateo 28:19-20). Existimos para salir de nuestras cuatro paredes y ser luz y sal en nuestra sociedad.</p>
-                    </div>
-                    <div>
-                        <p class="card-quote">“Si confiesas con tu boca que Jesús es el Señor y crees en tu corazón que Dios lo levantó de entre los muertos, serás salvo.”</p>
-                        <p class="card-verse">Romanos 10:9</p>
-                    </div>
+                    <h3>Enviados a Servir y Compartir</h3>
+                    <p>Respondemos al mandato de llevar las buenas nuevas y hacer discípulos (Mateo 28:19-20). Existimos para salir de nuestras cuatro paredes y ser luz y sal en nuestra sociedad.</p>
+                </div>
+                
+                <!-- TARJETA DERECHA INDEPENDIENTE (VERSÍCULO FUERA DE LA OTRA TARJETA) -->
+                <div class="side-verse-card">
+                    <p class="quote">“Si confiesas con tu boca que Jesús es el Señor y crees en tu corazón que Dios lo levantó de entre los muertos, serás salvo.”</p>
+                    <p class="verse">Romanos 10:9</p>
                 </div>
             </div>
         </section>
