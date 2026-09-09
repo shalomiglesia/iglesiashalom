@@ -288,12 +288,31 @@
             display: block;
         }
 
-        .hero-card-right {
+        /* REGLA BASE DE MOVIMIENTO Y BORDES DORADOS PARA TODAS LAS TARJETAS */
+        .hero-card-right,
+        .mini-card,
+        .card,
+        .side-verse-card,
+        .contact-box {
             background: var(--accent-bg);
-            padding: 2rem;
+            border: 2px solid var(--brand-gold);
             border-radius: 16px;
-            border: 1px solid rgba(226, 232, 240, 0.8);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* EFECTO DE ELEVACIÓN SUTIL AL PASAR EL CURSOR POR CUALQUIER TARJETA */
+        .hero-card-right:hover,
+        .mini-card:hover,
+        .card:hover,
+        .side-verse-card:hover,
+        .contact-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(217, 119, 6, 0.2);
+        }
+
+        .hero-card-right {
+            padding: 2rem;
             text-align: left;
         }
 
@@ -330,10 +349,7 @@
         }
 
         .mini-card {
-            background: var(--accent-bg);
             padding: 2rem 1.8rem;
-            border-radius: 16px;
-            border: 1px solid rgba(226, 232, 240, 0.8);
             text-align: left;
         }
 
@@ -368,10 +384,7 @@
         }
 
         .card {
-            background: var(--accent-bg);
             padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(226, 232, 240, 0.8);
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -389,17 +402,13 @@
             margin-top: 2rem;
         }
 
-        /* TARJETA EXTERNA AL COSTADO DERECHO */
+        /* TARJETA EXTERNA AL COSTADO DERECHO CON RESALTE ADICIONAL EN EL BORDE IZQUIERDO */
         .side-verse-card {
-            background: var(--accent-bg);
             padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            border-left: 4px solid var(--brand-gold);
+            border-left: 6px solid var(--brand-gold);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
         }
 
         .side-verse-card p.quote {
@@ -436,11 +445,7 @@
         }
 
         .contact-box {
-            background: var(--accent-bg);
             padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
         }
 
         .contact-box h3 {
@@ -525,9 +530,15 @@
             height: 380px;
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            border: 2px solid var(--brand-gold);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
             background-color: #cbd5e1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .map-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(217, 119, 6, 0.2);
         }
 
         .map-container iframe {
@@ -712,7 +723,7 @@
                     <p>Respondemos al mandato de llevar las buenas nuevas y hacer discípulos (Mateo 28:19-20). Existimos para salir de nuestras cuatro paredes y ser luz y sal en nuestra sociedad.</p>
                 </div>
                 
-                <!-- TARJETA DERECHA INDEPENDIENTE (VERSÍCULO FUERA DE LA OTRA TARJETA) -->
+                <!-- TARJETA DERECHA INDEPENDIENTE -->
                 <div class="side-verse-card">
                     <p class="quote">“Si confiesas con tu boca que Jesús es el Señor y crees en tu corazón que Dios lo levantó de entre los muertos, serás salvo.”</p>
                     <p class="verse">Romanos 10:9</p>
