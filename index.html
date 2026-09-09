@@ -223,6 +223,33 @@
             fill: currentColor;
         }
 
+        /* ESTILOS PARA EL SEGUNDO BANNER (INFERIOR) */
+        .banner-contact-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--brand-gold);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.25s ease, background-color 0.3s ease, box-shadow 0.25s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .banner-contact-btn:hover {
+            background-color: var(--brand-gold-hover);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+        }
+
         /* ESTRUCTURA EN DOS COLUMNAS DEBAJO DEL BANNER */
         .hero-content-grid {
             display: grid;
@@ -504,6 +531,13 @@
             .banner-instagram-btn.right {
                 right: 10px;
             }
+
+            .banner-contact-btn {
+                bottom: 12px;
+                right: 12px;
+                padding: 0.55rem 1rem;
+                font-size: 0.82rem;
+            }
         }
     </style>
 </head>
@@ -632,6 +666,14 @@
                         <p>Puedes venir con incertidumbre.</p>
                         <p>La búsqueda también puede ser parte del camino hacia Dios.</p>
                     </div>
+                </div>
+
+                <!-- NUEVO BANNER CON BOTÓN HACIA CONTACTO -->
+                <div class="banner-container">
+                    <img src="https://i.postimg.cc/bwjmY7JR/Chat-GPT-Image-9-sept-2026-02-12-43-p-m.png" alt="Banner Contacto Shalom" class="hero-banner">
+                    <button class="banner-contact-btn" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[3])">
+                        Contáctanos
+                    </button>
                 </div>
 
                 <button class="btn-primary" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
