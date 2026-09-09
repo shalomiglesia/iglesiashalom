@@ -183,11 +183,11 @@
             box-shadow: 0 16px 36px rgba(30, 58, 138, 0.18);
         }
 
-        /* ESTRUCTURA EN DOS COLUMNAS DEBAJO DEL BANNER */
-        .hero-content-grid {
+        /* ESTRUCTURA DE TRES COLUMNAS (TÍTULO - IMAGEN CENTRO - TARJETA DERECHA) */
+        .hero-three-columns {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
+            grid-template-columns: 1fr 1.1fr 1.2fr;
+            gap: 2rem;
             align-items: center;
             width: 100%;
             max-width: 1100px;
@@ -203,16 +203,31 @@
         }
 
         .hero-title-left h2 {
-            font-size: 2.3rem;
+            font-size: 2.1rem;
             font-weight: 800;
             color: var(--brand-blue);
             line-height: 1.25;
         }
 
+        /* Imagen al centro */
+        .hero-image-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-center img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            object-fit: cover;
+        }
+
         /* Tarjeta informativa costado derecho */
         .hero-card-right {
             background: var(--accent-bg);
-            padding: 2.2rem;
+            padding: 2rem;
             border-radius: 16px;
             border: 1px solid rgba(226, 232, 240, 0.8);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
@@ -221,27 +236,19 @@
 
         .hero-card-right p {
             color: var(--text-color);
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        .hero-card-right .quote {
-            font-style: italic;
-            color: var(--brand-blue);
-            font-weight: 600;
-            margin-top: 1.2rem;
-            margin-bottom: 0.4rem;
-            border-left: 3px solid var(--brand-gold);
-            padding-left: 0.8rem;
-        }
-
-        .hero-card-right .verse {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--brand-gold);
+        .hero-card-right p:last-child {
             margin-bottom: 0;
-            text-align: right;
+        }
+
+        .hero-card-right .highlight-text {
+            font-weight: 700;
+            color: var(--brand-blue);
+            margin-top: 0.8rem;
         }
 
         /* --- MINI TARJETAS HORIZONTALES EN INICIO --- */
@@ -398,7 +405,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             text-decoration: none;
-            transition: transform 0.25 ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
             box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25);
         }
 
@@ -414,7 +421,20 @@
         }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
+        @media (max-width: 980px) {
+            .hero-three-columns {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+
+            .hero-title-left h2 {
+                text-align: center;
+            }
+
+            .hero-image-center img {
+                max-width: 500px;
+            }
+
             .mini-cards-grid {
                 grid-template-columns: 1fr;
             }
@@ -435,16 +455,6 @@
 
             .hero-header h1 {
                 font-size: 2.2rem;
-            }
-
-            .hero-content-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .hero-title-left h2 {
-                font-size: 1.8rem;
-                text-align: center;
             }
         }
     </style>
@@ -478,25 +488,32 @@
                     <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
                 </div>
 
-                <!-- BANNER -->
+                <!-- BANNER principal -->
                 <div class="banner-container">
                     <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner">
                 </div>
 
-                <!-- CONTENIDO EN DOS COLUMNAS DEBAJO DEL BANNER -->
-                <div class="hero-content-grid">
-                    <!-- Título a la izquierda -->
+                <!-- ESTRUCTURA DE TRES COLUMNAS (TÍTULO - IMAGEN CENTRO - TARJETA INFORMATIVA) -->
+                <div class="hero-three-columns">
+                    <!-- 1. Título al costado izquierdo -->
                     <div class="hero-title-left">
-                        <h2>Estamos preparando un lugar para encontrarnos</h2>
+                        <h2>La misión comienza donde termina la comodidad</h2>
                     </div>
 
-                    <!-- Tarjeta informativa a la derecha -->
+                    <!-- 2. Imagen al centro -->
+                    <div class="hero-image-center">
+                        <img src="https://i.postimg.cc/8zdPW4c6/Whats-App-Image-2026-09-09-at-11-38-37-AM.jpg" alt="La misión comienza donde termina la comodidad">
+                    </div>
+
+                    <!-- 3. Tarjeta Informativa al costado derecho -->
                     <div class="hero-card-right">
-                        <p>Nuestra iglesia está construyendo un nuevo espacio digital para estar más cerca de nuestra comunidad.</p>
-                        <p>Queremos salir a buscar, escuchar, servir y compartir el mensaje de Jesucristo con cada persona que necesite esperanza.</p>
-                        <p>Pronto estaremos contigo.</p>
-                        <p class="quote">“Porque el Hijo del Hombre vino a buscar y a salvar lo que se había perdido.”</p>
-                        <p class="verse">Lucas 19:10</p>
+                        <p>Es fácil amar dentro de nuestros propios círculos.</p>
+                        <p>El desafío del Evangelio comienza cuando cruzamos nuestras fronteras.</p>
+                        <p>Cuando nos acercamos al desconocido.</p>
+                        <p>Cuando escuchamos al que piensa diferente.</p>
+                        <p>Cuando servimos sin esperar algo a cambio.</p>
+                        <p>Cuando buscamos al que está lejos.</p>
+                        <p class="highlight-text">Una iglesia viva no solamente se reúne. También es enviada.</p>
                     </div>
                 </div>
 
