@@ -43,15 +43,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 5%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(17, 30, 24, 0.90);
+            padding: 1.5rem 5%;
+            background-color: rgba(17, 30, 24, 0.95);
             backdrop-filter: blur(10px);
-            z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
         }
 
         .brand-container {
@@ -99,9 +95,30 @@
             border-bottom-color: var(--highlight);
         }
 
+        /* --- BANNER EN LA PARTE SUPERIOR (DEBAJO DEL ENCABEZADO) --- */
+        .top-banner-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem 5% 0 5%;
+        }
+
+        .top-banner {
+            width: 100%;
+            max-width: 1100px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .top-banner:hover {
+            transform: scale(1.01);
+        }
+
         /* --- CONTENEDOR DE SECCIONES INDEPENDIENTES --- */
         main {
-            margin-top: 100px; 
             flex: 1;
             display: flex;
             align-items: center;
@@ -138,7 +155,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2rem 1.5rem; /* Ajustado el padding superior */
+            padding: 2rem 1.5rem;
         }
 
         .hero h1 {
@@ -153,24 +170,8 @@
             font-size: 1.2rem;
             color: var(--text-muted);
             max-width: 600px;
-            margin-bottom: 1rem; /* Reducido para acercar al banner */
+            margin-bottom: 2.5rem;
             font-weight: 400;
-        }
-
-        /* Estilos específicos para el nuevo Banner */
-        .hero-banner {
-            width: 100%;
-            max-width: 900px; /* Ajusta el ancho máximo del banner */
-            height: auto;
-            margin-bottom: 2.5rem; /* Espacio antes del botón */
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            cursor: pointer; /* Indica que es clickeable */
-            transition: transform 0.3s ease;
-        }
-
-        .hero-banner:hover {
-            transform: scale(1.02); /* Pequeño efecto al pasar el mouse */
         }
 
         .btn-primary {
@@ -264,10 +265,6 @@
                 padding: 1.5rem 5%;
             }
 
-            main {
-                margin-top: 140px;
-            }
-
             nav ul {
                 gap: 1rem;
                 flex-wrap: wrap;
@@ -281,7 +278,7 @@
 </head>
 <body>
 
-    <!-- ENCABEZADO FIJO -->
+    <!-- ENCABEZADO -->
     <header>
         <div class="brand-container">
             <span class="brand-subtitle">Centro de Adoración</span>
@@ -297,6 +294,11 @@
         </nav>
     </header>
 
+    <!-- BANNER SUPERIOR (UBICADO DEBAJO DEL LOGO Y NAVEGACIÓN, ARRIBA DE LAS SECCIONES) -->
+    <div class="top-banner-container">
+        <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="top-banner" id="startBanner">
+    </div>
+
     <!-- CONTENIDO DINÁMICO (SECCIONES INDEPENDIENTES) -->
     <main>
         <!-- SECCIÓN: INICIO -->
@@ -304,10 +306,6 @@
             <div class="hero">
                 <h1>Un lugar para conectar, adorar y crecer juntos</h1>
                 <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
-                
-                <!-- INCLUSIÓN DEL BANNER SOLICITADO -->
-                <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner">
-
                 <button class="btn-primary" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
             </div>
         </section>
@@ -390,9 +388,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Lógica para que el banner también lleve a Reuniones al hacer clic
         document.getElementById('startBanner').addEventListener('click', function() {
-            // Reutilizamos la función showSection pasando el ID y el enlace del menú correspondiente
             showSection('reuniones', document.querySelectorAll('.nav-link')[2]);
         });
     </script>
