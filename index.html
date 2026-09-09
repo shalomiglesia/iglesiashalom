@@ -5,24 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHALOM — Centro de Adoración</title>
     
-    <!-- Preconexión a dominios externos para optimizar tiempos de carga -->
+    <!-- OPTIMIZACIÓN DE CONEXIÓN A CDNs -->
+    <link rel="preconnect" href="https://ik.imagekit.io" crossorigin>
+    <link rel="dns-prefetch" href="https://ik.imagekit.io">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://i.postimg.cc" crossorigin>
 
-    <!-- Importación de la fuente Google Montserrat -->
+    <!-- PRECARGA DE RECURSOS CRÍTICOS DE ALTA PRIORIDAD -->
+    <link rel="preload" as="image" href="https://ik.imagekit.io/ikmedia/tr:w-200,f-auto/https://i.postimg.cc/t4wCVNKh/Chat-GPT-Image-9-sept-2026-02-19-18-p-m.png">
+    <link rel="preload" as="image" href="https://ik.imagekit.io/ikmedia/tr:w-1200,f-auto,q-80/https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png">
+
+    <!-- FUENTES -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
 
     <style>
         /* --- PALETA CÁLIDA, CELESTIAL Y ESPIRITUAL --- */
         :root {
-            --primary-bg: #fbfbfa;        /* Blanco cálido/marfil de fondo */
-            --accent-bg: #ffffff;         /* Fondo blanco para tarjetas */
-            --text-color: #1e293b;        /* Texto principal en tono gris azulado oscuro */
-            --text-muted: #64748b;       /* Texto secundario suave */
-            --brand-blue: #1e3a8a;       /* Azul celestial profundo */
-            --brand-gold: #d97706;       /* Dorado espiritual de acento */
-            --brand-gold-hover: #b45309; /* Dorado más oscuro para interacciones */
+            --primary-bg: #fbfbfa;
+            --accent-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --brand-blue: #1e3a8a;
+            --brand-gold: #d97706;
+            --brand-gold-hover: #b45309;
             --font-main: 'Montserrat', sans-serif;
         }
 
@@ -43,7 +48,7 @@
             overflow-x: hidden;
         }
 
-        /* --- ENCABEZADO Y NAVEGACIÓN --- */
+        /* --- ENCABEZADO --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -57,7 +62,6 @@
             z-index: 1000;
         }
 
-        /* INTEGRACIÓN DEL LOGO CON TÍTULO */
         .brand-container {
             display: flex;
             align-items: center;
@@ -68,6 +72,7 @@
         .brand-logo {
             height: 50px;
             width: auto;
+            aspect-ratio: 1/1;
             object-fit: contain;
         }
 
@@ -116,7 +121,7 @@
             border-bottom-color: var(--brand-gold);
         }
 
-        /* --- CONTENEDOR DE SECCIONES INDEPENDIENTES --- */
+        /* --- CONTENIDO --- */
         main {
             flex: 1;
             display: flex;
@@ -129,25 +134,18 @@
             display: none;
             width: 100%;
             max-width: 1100px;
-            animation: fadeIn 0.4s ease-in-out forwards;
         }
 
         .page-section.active {
             display: block;
+            animation: fadeIn 0.3s ease-in-out forwards;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- VISTA INICIO (HERO) --- */
         .hero {
             display: flex;
             flex-direction: column;
@@ -156,9 +154,7 @@
             text-align: center;
         }
 
-        .hero-header {
-            margin-bottom: 2rem;
-        }
+        .hero-header { margin-bottom: 2rem; }
 
         .hero-header h1 {
             font-size: 3rem;
@@ -174,7 +170,6 @@
             color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto;
-            font-weight: 400;
         }
 
         /* CONTENEDOR DE BANNERS */
@@ -186,22 +181,22 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 12px 30px rgba(30, 58, 138, 0.12);
-            background-color: #e2e8f0; /* Color base mientras carga la imagen */
+            background-color: #cbd5e1; /* Color reservado previo a la carga */
+            aspect-ratio: 16/9;
         }
 
         .hero-banner {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
 
-        .banner-container:hover .hero-banner {
-            transform: scale(1.01);
-        }
+        .banner-container:hover .hero-banner { transform: scale(1.01); }
 
-        /* BOTONES DENTRO DEL BANNER */
+        /* BOTONES SOBRE BANNERS */
         .banner-instagram-btn {
             position: absolute;
             bottom: 20px;
@@ -219,7 +214,6 @@
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(4px);
         }
 
         .banner-instagram-btn.left { left: 20px; }
@@ -230,11 +224,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .banner-instagram-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
+        .banner-instagram-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
         .banner-contact-btn {
             position: absolute;
@@ -252,24 +242,22 @@
             font-size: 0.95rem;
             border: none;
             cursor: pointer;
-            transition: transform 0.25s ease, background-color 0.3s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, background-color 0.3s ease;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
 
         .banner-contact-btn:hover {
             background-color: var(--brand-gold-hover);
             transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
         }
 
-        /* ESTRUCTURA DE BLOQUES Y TARJETAS */
+        /* GRID SECCIONES */
         .hero-content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2.5rem;
             align-items: center;
             width: 100%;
-            max-width: 1100px;
             margin-bottom: 2.5rem;
         }
 
@@ -279,17 +267,10 @@
             gap: 2rem;
             align-items: center;
             width: 100%;
-            max-width: 1100px;
             margin-bottom: 2.5rem;
         }
 
-        .hero-title-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: left;
-        }
-
+        .hero-title-left { text-align: left; }
         .hero-title-left h2 {
             font-size: 2.1rem;
             font-weight: 800;
@@ -298,18 +279,15 @@
         }
 
         .hero-image-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #e2e8f0;
+            background-color: #cbd5e1;
             border-radius: 16px;
+            aspect-ratio: 4/3;
+            overflow: hidden;
         }
 
         .hero-image-center img {
             width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            height: 100%;
             object-fit: cover;
         }
 
@@ -322,19 +300,13 @@
             text-align: left;
         }
 
-        .hero-card-right p {
-            color: var(--text-color);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-        }
+        .hero-card-right p { font-size: 0.95rem; margin-bottom: 0.5rem; }
 
         .hero-card-right .quote {
             font-style: italic;
             color: var(--brand-blue);
             font-weight: 600;
             margin-top: 1.2rem;
-            margin-bottom: 0.4rem;
             border-left: 3px solid var(--brand-gold);
             padding-left: 0.8rem;
         }
@@ -357,7 +329,6 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 1.8rem;
             width: 100%;
-            max-width: 1100px;
             margin-bottom: 2.5rem;
         }
 
@@ -366,17 +337,7 @@
             padding: 2rem 1.8rem;
             border-radius: 16px;
             border: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             text-align: left;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .mini-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.1);
         }
 
         .mini-card h3 {
@@ -384,15 +345,9 @@
             font-weight: 700;
             color: var(--brand-blue);
             margin-bottom: 1rem;
-            line-height: 1.3;
         }
 
-        .mini-card p {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            line-height: 1.55;
-            margin-bottom: 0.6rem;
-        }
+        .mini-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 0.6rem; }
 
         .btn-primary {
             background-color: var(--brand-blue);
@@ -400,19 +355,13 @@
             padding: 0.9rem 2.2rem;
             border-radius: 50px;
             font-weight: 700;
-            text-decoration: none;
-            transition: transform 0.2s ease, background-color 0.3s ease;
-            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.2);
-            cursor: pointer;
             border: none;
+            cursor: pointer;
             font-size: 1rem;
-            margin-top: 0.5rem;
+            transition: background-color 0.3s ease;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            background-color: var(--brand-gold);
-        }
+        .btn-primary:hover { background-color: var(--brand-gold); }
 
         .grid-cards {
             display: grid;
@@ -426,47 +375,19 @@
             padding: 2.5rem;
             border-radius: 16px;
             border: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--brand-gold);
-            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.12);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--brand-blue);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+        .card h3 { font-size: 1.5rem; font-weight: 700; color: var(--brand-blue); margin-bottom: 1rem; }
+        .card p { color: var(--text-muted); }
 
         .section-title {
             font-size: 2.2rem;
             font-weight: 800;
             color: var(--brand-blue);
             text-align: center;
-            margin-bottom: 1rem;
         }
 
-        .contact-info {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-info p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
+        .contact-info { text-align: center; max-width: 600px; margin: 0 auto; }
 
         footer {
             text-align: center;
@@ -478,58 +399,25 @@
             margin-top: auto;
         }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 980px) {
-            .hero-content-grid,
-            .hero-three-columns {
-                grid-template-columns: 1fr;
-                gap: 1.8rem;
-            }
-
-            .hero-title-left h2 { text-align: center; }
-            .hero-image-center img { max-width: 500px; }
+            .hero-content-grid, .hero-three-columns { grid-template-columns: 1fr; }
             .mini-cards-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 868px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1.2rem;
-                padding: 1.2rem 5%;
-            }
-
-            nav ul {
-                gap: 1rem;
-                flex-wrap: wrap;
-            }
-
-            .hero-header h1 { font-size: 2.2rem; }
-
-            .banner-instagram-btn {
-                bottom: 12px;
-                padding: 0.55rem 0.9rem;
-                font-size: 0.8rem;
-            }
-
-            .banner-instagram-btn.left { left: 10px; }
-            .banner-instagram-btn.right { right: 10px; }
-
-            .banner-contact-btn {
-                bottom: 12px;
-                right: 12px;
-                padding: 0.55rem 1rem;
-                font-size: 0.82rem;
-            }
+            header { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+            .banner-instagram-btn { bottom: 10px; padding: 0.5rem 0.8rem; font-size: 0.75rem; }
+            .banner-instagram-btn.left { left: 8px; }
+            .banner-instagram-btn.right { right: 8px; }
+            .banner-contact-btn { bottom: 10px; right: 10px; padding: 0.5rem 1rem; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ENCABEZADO CON LOGO DE LA PÁGINA -->
     <header>
         <div class="brand-container" onclick="showSection('inicio', document.querySelectorAll('.nav-link')[0])">
-            <img src="https://i.postimg.cc/t4wCVNKh/Chat-GPT-Image-9-sept-2026-02-19-18-p-m.png" alt="Logo Shalom" class="brand-logo" fetchpriority="high" decoding="async">
+            <img src="https://ik.imagekit.io/ikmedia/tr:w-200,f-auto/https://i.postimg.cc/t4wCVNKh/Chat-GPT-Image-9-sept-2026-02-19-18-p-m.png" alt="Logo Shalom" class="brand-logo" width="50" height="50" fetchpriority="high" decoding="async">
             <div class="brand-text">
                 <span class="brand-subtitle">Centro de Adoración</span>
                 <span class="brand-title">SHALOM</span>
@@ -545,9 +433,7 @@
         </nav>
     </header>
 
-    <!-- CONTENIDO DINÁMICO -->
     <main>
-        <!-- SECCIÓN 1: INICIO -->
         <section id="inicio" class="page-section active">
             <div class="hero">
                 <div class="hero-header">
@@ -555,9 +441,9 @@
                     <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
                 </div>
 
-                <!-- BANNER PRINCIPAL (Carga Prioritaria) -->
+                <!-- BANNER PRINCIPAL COMPRIMIDO Y OPTIMIZADO -->
                 <div class="banner-container">
-                    <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner" fetchpriority="high" decoding="async">
+                    <img src="https://ik.imagekit.io/ikmedia/tr:w-1200,f-auto,q-80/https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner" width="1200" height="675" fetchpriority="high" decoding="async">
                     
                     <a href="https://www.instagram.com/simientedelavid?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="banner-instagram-btn left">
                         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -570,7 +456,6 @@
                     </a>
                 </div>
 
-                <!-- BLOQUE 1 -->
                 <div class="hero-content-grid">
                     <div class="hero-title-left">
                         <h2>Estamos preparando un lugar para encontrarnos</h2>
@@ -584,13 +469,13 @@
                     </div>
                 </div>
 
-                <!-- BLOQUE 2 (Imagen Diferida con loading="lazy") -->
+                <!-- IMAGEN SECUNDARIA CON LAZY LOADING Y TAMAÑO REDUCIDO -->
                 <div class="hero-three-columns">
                     <div class="hero-title-left">
                         <h2>La misión comienza donde termina la comodidad</h2>
                     </div>
                     <div class="hero-image-center">
-                        <img src="https://i.postimg.cc/8zdPW4c6/Whats-App-Image-2026-09-09-at-11-38-37-AM.jpg" alt="La misión comienza donde termina la comodidad" loading="lazy" decoding="async">
+                        <img src="https://ik.imagekit.io/ikmedia/tr:w-600,f-auto,q-80/https://i.postimg.cc/8zdPW4c6/Whats-App-Image-2026-09-09-at-11-38-37-AM.jpg" alt="La misión comienza donde termina la comodidad" width="600" height="450" loading="lazy" decoding="async">
                     </div>
                     <div class="hero-card-right">
                         <p>Es fácil amar dentro de nuestros propios círculos.</p>
@@ -603,7 +488,6 @@
                     </div>
                 </div>
 
-                <!-- TRES MINI TARJETAS -->
                 <div class="mini-cards-grid">
                     <div class="mini-card">
                         <h3>Para quien siente que se quedó lejos</h3>
@@ -634,9 +518,9 @@
                     </div>
                 </div>
 
-                <!-- BANNER CONTACTO (Carga diferida) -->
+                <!-- BANNER CONTACTO OPTIMIZADO -->
                 <div class="banner-container">
-                    <img src="https://i.postimg.cc/bwjmY7JR/Chat-GPT-Image-9-sept-2026-02-12-43-p-m.png" alt="Banner Contacto Shalom" class="hero-banner" loading="lazy" decoding="async">
+                    <img src="https://ik.imagekit.io/ikmedia/tr:w-1200,f-auto,q-80/https://i.postimg.cc/bwjmY7JR/Chat-GPT-Image-9-sept-2026-02-12-43-p-m.png" alt="Banner Contacto Shalom" class="hero-banner" width="1200" height="675" loading="lazy" decoding="async">
                     <button class="banner-contact-btn" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[3])">
                         Contáctanos
                     </button>
@@ -646,7 +530,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 2: NOSOTROS -->
         <section id="nosotros" class="page-section">
             <h2 class="section-title">Nuestra Esencia</h2>
             <div class="grid-cards">
@@ -665,7 +548,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 3: REUNIONES -->
         <section id="reuniones" class="page-section">
             <h2 class="section-title">Nuestras Reuniones</h2>
             <div class="grid-cards">
@@ -682,7 +564,6 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 4: CONTACTO -->
         <section id="contacto" class="page-section">
             <h2 class="section-title">Ponte en Contacto</h2>
             <div class="card contact-info">
@@ -701,23 +582,15 @@
     <script>
         function showSection(sectionId, element) {
             const sections = document.querySelectorAll('.page-section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
+            sections.forEach(section => section.classList.remove('active'));
 
             const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
+            navLinks.forEach(link => link.classList.remove('active'));
 
             const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
+            if (targetSection) targetSection.classList.add('active');
 
-            if (element) {
-                element.classList.add('active');
-            }
+            if (element) element.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
