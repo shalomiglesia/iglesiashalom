@@ -13,11 +13,11 @@
     <style>
         /* --- ESTILOS GENERALES Y VARIABLES --- */
         :root {
-            --primary-bg: #111e18; /* Fondo verde oscuro similar al de la imagen */
-            --accent-bg: #1c3027;  /* Verde secundario para tarjetas */
+            --primary-bg: #111e18; 
+            --accent-bg: #1c3027;  
             --text-color: #ffffff;
             --text-muted: #a3b8ad;
-            --highlight: #42b883;   /* Detalle verde claro vibrante */
+            --highlight: #42b883;   
             --font-main: 'Montserrat', sans-serif;
         }
 
@@ -28,10 +28,6 @@
             font-family: var(--font-main);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             background: linear-gradient(135deg, #0d1713 0%, var(--primary-bg) 50%, #162920 100%);
             color: var(--text-color);
@@ -39,6 +35,7 @@
             display: flex;
             flex-direction: column;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* --- ENCABEZADO Y NAVEGACIÓN --- */
@@ -47,11 +44,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 2rem 5%;
-            position: sticky;
+            position: fixed;
             top: 0;
-            background-color: rgba(17, 30, 24, 0.85);
+            left: 0;
+            width: 100%;
+            background-color: rgba(17, 30, 24, 0.90);
             backdrop-filter: blur(10px);
-            z-index: 100;
+            z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -72,43 +71,82 @@
 
         .brand-title {
             font-size: 2.2rem;
-            font-weight: 800; /* Mismo estilo bold e imponente de la imagen */
+            font-weight: 800; 
             letter-spacing: 1px;
             color: var(--text-color);
             text-shadow: 0px 4px 12px rgba(0,0,0,0.3);
         }
 
+        /* Menú (Superior derecha en línea horizontal) */
         nav ul {
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         nav a {
-            color: var(--text-color);
+            color: var(--text-muted);
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
             transition: color 0.3s ease;
+            cursor: pointer;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
         }
 
-        nav a:hover {
-            color: var(--highlight);
+        nav a:hover, nav a.active {
+            color: var(--text-color);
+            border-bottom-color: var(--highlight);
         }
 
-        /* --- SECCIÓN PRINCIPAL (HERO) --- */
+        /* --- CONTENEDOR DE SECCIONES INDEPENDIENTES --- */
+        main {
+            margin-top: 100px; /* Offset por el menú fijo */
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 5%;
+        }
+
+        /* Ocultar secciones por defecto */
+        .page-section {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        /* Mostrar únicamente la sección activa */
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- VISTA INICIO (HERO) --- */
         .hero {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 6rem 1.5rem 4rem 1.5rem;
-            flex: 1;
+            padding: 4rem 1.5rem;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 800;
             max-width: 800px;
             margin-bottom: 1.5rem;
@@ -132,6 +170,9 @@
             text-decoration: none;
             transition: transform 0.2s ease, background-color 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
         }
 
         .btn-primary:hover {
@@ -140,13 +181,7 @@
             color: #ffffff;
         }
 
-        /* --- SECCIONES DE CONTENIDO MINIMALISTAS --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
+        /* --- ESTILOS DE TARJETAS Y CONTENIDO --- */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -179,16 +214,28 @@
         }
 
         .section-title {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
             margin-bottom: 1rem;
         }
 
         /* --- FOOTER --- */
         footer {
             text-align: center;
-            padding: 2.5rem;
+            padding: 2rem;
             background-color: rgba(13, 23, 19, 0.9);
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -202,6 +249,11 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1.5rem;
+                padding: 1.5rem 5%;
+            }
+
+            main {
+                margin-top: 140px;
             }
 
             nav ul {
@@ -217,83 +269,115 @@
 </head>
 <body>
 
-    <!-- ENCABEZADO -->
+    <!-- ENCABEZADO FIJO -->
     <header>
         <div class="brand-container">
             <span class="brand-subtitle">Centro de Adoración</span>
             <span class="brand-title">SHALOM</span>
         </div>
+        <!-- Navegación Superior Derecha Horizontal -->
         <nav>
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#reuniones">Reuniones</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a class="nav-link active" onclick="showSection('inicio', this)">Inicio</a></li>
+                <li><a class="nav-link" onclick="showSection('nosotros', this)">Nosotros</a></li>
+                <li><a class="nav-link" onclick="showSection('reuniones', this)">Reuniones</a></li>
+                <li><a class="nav-link" onclick="showSection('contacto', this)">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- INICIO (HERO) -->
-    <section id="inicio" class="hero">
-        <h1>Un lugar para conectar, adorar y crecer juntos</h1>
-        <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
-        <a href="#reuniones" class="btn-primary">Ver Horarios</a>
-    </section>
+    <!-- CONTENIDO DINÁMICO (SECCIONES INDEPENDIENTES) -->
+    <main>
+        <!-- SECCIÓN: INICIO -->
+        <section id="inicio" class="page-section active">
+            <div class="hero">
+                <h1>Un lugar para conectar, adorar y crecer juntos</h1>
+                <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
+                <button class="btn-primary" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
+            </div>
+        </section>
 
-    <!-- NOSOTROS Y REUNIONES -->
-    <section id="nosotros" class="container">
-        <h2 class="section-title">Nuestra Esencia</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <h3>Comunidad</h3>
-                <p>Somos una familia donde cada persona encuentra un espacio de pertenencia, apoyo y crecimiento constante.</p>
+        <!-- SECCIÓN: NOSOTROS -->
+        <section id="nosotros" class="page-section">
+            <h2 class="section-title">Nuestra Esencia</h2>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Comunidad</h3>
+                    <p>Somos una familia donde cada persona encuentra un espacio de pertenencia, apoyo y crecimiento constante.</p>
+                </div>
+                <div class="card">
+                    <h3>Adoración</h3>
+                    <p>Buscamos crear un ambiente donde la adoración sincera y la presencia transformen nuestras vidas.</p>
+                </div>
+                <div class="card">
+                    <h3>Propósito</h3>
+                    <p>Inspirar a cada individuo a descubrir y desarrollar el propósito para el cual fue creado.</p>
+                </div>
             </div>
-            <div class="card">
-                <h3>Adoración</h3>
-                <p>Buscamos crear un ambiente donde la adoración sincera y la presencia transformen nuestras vidas.</p>
-            </div>
-            <div class="card">
-                <h3>Propósito</h3>
-                <p>Inspirar a cada individuo a descubrir y desarrollar el propósito para el cual fue creado.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="reuniones" class="container">
-        <h2 class="section-title">Nuestras Reuniones</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <h3>Reunión General</h3>
-                <p><strong>Domingos:</strong> 10:00 AM</p>
-                <p>Un tiempo de alabanza, enseñanza y comunión para toda la familia.</p>
+        <!-- SECCIÓN: REUNIONES -->
+        <section id="reuniones" class="page-section">
+            <h2 class="section-title">Nuestras Reuniones</h2>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Reunión General</h3>
+                    <p><strong>Domingos:</strong> 10:00 AM</p>
+                    <p>Un tiempo de alabanza, enseñanza y comunión para toda la familia.</p>
+                </div>
+                <div class="card">
+                    <h3>Noche de Oración</h3>
+                    <p><strong>Miércoles:</strong> 7:30 PM</p>
+                    <p>Un espacio intencional para la intercesión y la búsqueda profunda.</p>
+                </div>
             </div>
-            <div class="card">
-                <h3>Noche de Oración</h3>
-                <p><strong>Miércoles:</strong> 7:30 PM</p>
-                <p>Un espacio intencional para la intercesión y la búsqueda profunda.</p>
+        </section>
+
+        <!-- SECCIÓN: CONTACTO -->
+        <section id="contacto" class="page-section">
+            <h2 class="section-title">Ponte en Contacto</h2>
+            <div class="card contact-info">
+                <h3>Te esperamos</h3>
+                <p>Si tienes dudas o deseas visitarnos, comunícate con nosotros.</p>
+                <p><strong>Dirección:</strong> Av. Principal #123</p>
+                <p><strong>Correo:</strong> contacto@shalom.org</p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- PIE DE PÁGINA -->
-    <footer id="contacto">
+    <footer>
         <p>&copy; 2026 Centro de Adoración Shalom. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- INTERACTIVIDAD Y DINAMISMO (JS) -->
+    <!-- LÓGICA JAVASCRIPT PARA MOSTRAR/OCULTAR SECCIONES -->
     <script>
-        // Efecto dinámico suave al hacer clic en los enlaces de navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+        function showSection(sectionId, element) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
-        });
+
+            // Quitar clase activa de todos los enlaces del menú
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Activar la sección seleccionada y resaltar el botón en la barra de navegación
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            if (element) {
+                element.classList.add('active');
+            }
+
+            // Desplazar suavemente hacia arriba por si el usuario estaba más abajo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
