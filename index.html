@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHALOM — Centro de Adoración</title>
     
-    <!-- Importación de la fuente Google Montserrat (Estilo idéntico a la imagen) -->
+    <!-- Importación de la fuente Google Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
@@ -54,7 +54,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Bloque del logo (Superior izquierda) */
         .brand-container {
             display: flex;
             flex-direction: column;
@@ -77,7 +76,6 @@
             text-shadow: 0px 4px 12px rgba(0,0,0,0.3);
         }
 
-        /* Menú (Superior derecha en línea horizontal) */
         nav ul {
             display: flex;
             list-style: none;
@@ -103,7 +101,7 @@
 
         /* --- CONTENEDOR DE SECCIONES INDEPENDIENTES --- */
         main {
-            margin-top: 100px; /* Offset por el menú fijo */
+            margin-top: 100px; 
             flex: 1;
             display: flex;
             align-items: center;
@@ -111,7 +109,6 @@
             padding: 2rem 5%;
         }
 
-        /* Ocultar secciones por defecto */
         .page-section {
             display: none;
             width: 100%;
@@ -119,7 +116,6 @@
             animation: fadeIn 0.4s ease-in-out forwards;
         }
 
-        /* Mostrar únicamente la sección activa */
         .page-section.active {
             display: block;
         }
@@ -142,7 +138,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 4rem 1.5rem;
+            padding: 2rem 1.5rem; /* Ajustado el padding superior */
         }
 
         .hero h1 {
@@ -157,8 +153,24 @@
             font-size: 1.2rem;
             color: var(--text-muted);
             max-width: 600px;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1rem; /* Reducido para acercar al banner */
             font-weight: 400;
+        }
+
+        /* Estilos específicos para el nuevo Banner */
+        .hero-banner {
+            width: 100%;
+            max-width: 900px; /* Ajusta el ancho máximo del banner */
+            height: auto;
+            margin-bottom: 2.5rem; /* Espacio antes del botón */
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            cursor: pointer; /* Indica que es clickeable */
+            transition: transform 0.3s ease;
+        }
+
+        .hero-banner:hover {
+            transform: scale(1.02); /* Pequeño efecto al pasar el mouse */
         }
 
         .btn-primary {
@@ -275,7 +287,6 @@
             <span class="brand-subtitle">Centro de Adoración</span>
             <span class="brand-title">SHALOM</span>
         </div>
-        <!-- Navegación Superior Derecha Horizontal -->
         <nav>
             <ul>
                 <li><a class="nav-link active" onclick="showSection('inicio', this)">Inicio</a></li>
@@ -293,6 +304,10 @@
             <div class="hero">
                 <h1>Un lugar para conectar, adorar y crecer juntos</h1>
                 <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
+                
+                <!-- INCLUSIÓN DEL BANNER SOLICITADO -->
+                <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner">
+
                 <button class="btn-primary" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
             </div>
         </section>
@@ -350,22 +365,19 @@
         <p>&copy; 2026 Centro de Adoración Shalom. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- LÓGICA JAVASCRIPT PARA MOSTRAR/OCULTAR SECCIONES -->
+    <!-- LÓGICA JAVASCRIPT -->
     <script>
         function showSection(sectionId, element) {
-            // Ocultar todas las secciones
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(section => {
                 section.classList.remove('active');
             });
 
-            // Quitar clase activa de todos los enlaces del menú
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.classList.remove('active');
             });
 
-            // Activar la sección seleccionada y resaltar el botón en la barra de navegación
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 targetSection.classList.add('active');
@@ -375,9 +387,14 @@
                 element.classList.add('active');
             }
 
-            // Desplazar suavemente hacia arriba por si el usuario estaba más abajo
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Lógica para que el banner también lleve a Reuniones al hacer clic
+        document.getElementById('startBanner').addEventListener('click', function() {
+            // Reutilizamos la función showSection pasando el ID y el enlace del menú correspondiente
+            showSection('reuniones', document.querySelectorAll('.nav-link')[2]);
+        });
     </script>
 </body>
 </html>
