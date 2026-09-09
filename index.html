@@ -11,13 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- ESTILOS GENERALES Y VARIABLES --- */
+        /* --- NUEVA PALETA CÁLIDA, CELESTIAL Y ESPIRITUAL --- */
         :root {
-            --primary-bg: #111e18; 
-            --accent-bg: #1c3027;  
-            --text-color: #ffffff;
-            --text-muted: #a3b8ad;
-            --highlight: #42b883;   
+            --primary-bg: #fbfbfa;        /* Blanco cálido/marfil de fondo */
+            --accent-bg: #ffffff;         /* Fondo blanco para tarjetas */
+            --text-color: #1e293b;        /* Texto principal en tono gris azulado oscuro */
+            --text-muted: #64748b;       /* Texto secundario suave */
+            --brand-blue: #1e3a8a;       /* Azul celestial profundo */
+            --brand-gold: #d97706;       /* Dorado espiritual de acento */
+            --brand-gold-hover: #b45309; /* Dorado más oscuro para interacciones */
             --font-main: 'Montserrat', sans-serif;
         }
 
@@ -29,7 +31,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0d1713 0%, var(--primary-bg) 50%, #162920 100%);
+            background-color: var(--primary-bg);
             color: var(--text-color);
             min-height: 100vh;
             display: flex;
@@ -44,10 +46,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 5%;
-            background-color: rgba(17, 30, 24, 0.95);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            width: 100%;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .brand-container {
@@ -60,7 +64,7 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--text-muted);
+            color: var(--brand-gold);
             margin-bottom: -2px;
         }
 
@@ -68,8 +72,7 @@
             font-size: 2.2rem;
             font-weight: 800; 
             letter-spacing: 1px;
-            color: var(--text-color);
-            text-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+            color: var(--brand-blue);
         }
 
         nav ul {
@@ -91,30 +94,8 @@
         }
 
         nav a:hover, nav a.active {
-            color: var(--text-color);
-            border-bottom-color: var(--highlight);
-        }
-
-        /* --- BANNER EN LA PARTE SUPERIOR (DEBAJO DEL ENCABEZADO) --- */
-        .top-banner-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 1.5rem 5% 0 5%;
-        }
-
-        .top-banner {
-            width: 100%;
-            max-width: 1100px;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .top-banner:hover {
-            transform: scale(1.01);
+            color: var(--brand-blue);
+            border-bottom-color: var(--brand-gold);
         }
 
         /* --- CONTENEDOR DE SECCIONES INDEPENDIENTES --- */
@@ -123,7 +104,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem 5%;
+            padding: 3rem 5%;
         }
 
         .page-section {
@@ -155,14 +136,15 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2rem 1.5rem;
+            padding: 1rem 1.5rem;
         }
 
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 800;
+            color: var(--brand-blue);
             max-width: 800px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             line-height: 1.2;
         }
 
@@ -170,19 +152,42 @@
             font-size: 1.2rem;
             color: var(--text-muted);
             max-width: 600px;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             font-weight: 400;
         }
 
+        /* BANNER UBICADO EXCLUSIVAMENTE EN LA SECCIÓN INICIO */
+        .banner-container {
+            width: 100%;
+            max-width: 950px;
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.12);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 36px rgba(30, 58, 138, 0.18);
+        }
+
         .btn-primary {
-            background-color: var(--text-color);
-            color: var(--primary-bg);
+            background-color: var(--brand-blue);
+            color: #ffffff;
             padding: 0.9rem 2.2rem;
             border-radius: 50px;
             font-weight: 700;
             text-decoration: none;
             transition: transform 0.2s ease, background-color 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.2);
             cursor: pointer;
             border: none;
             font-size: 1rem;
@@ -190,8 +195,7 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            background-color: var(--highlight);
-            color: #ffffff;
+            background-color: var(--brand-gold);
         }
 
         /* --- ESTILOS DE TARJETAS Y CONTENIDO --- */
@@ -206,18 +210,21 @@
             background: var(--accent-bg);
             padding: 2.5rem;
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            border-color: var(--highlight);
+            border-color: var(--brand-gold);
+            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.12);
         }
 
         .card h3 {
             font-size: 1.5rem;
             font-weight: 700;
+            color: var(--brand-blue);
             margin-bottom: 1rem;
         }
 
@@ -229,6 +236,7 @@
         .section-title {
             font-size: 2.2rem;
             font-weight: 800;
+            color: var(--brand-blue);
             text-align: center;
             margin-bottom: 1rem;
         }
@@ -249,10 +257,10 @@
         footer {
             text-align: center;
             padding: 2rem;
-            background-color: rgba(13, 23, 19, 0.9);
+            background-color: #ffffff;
             color: var(--text-muted);
             font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(226, 232, 240, 0.8);
             margin-top: auto;
         }
 
@@ -294,23 +302,24 @@
         </nav>
     </header>
 
-    <!-- BANNER SUPERIOR (UBICADO DEBAJO DEL LOGO Y NAVEGACIÓN, ARRIBA DE LAS SECCIONES) -->
-    <div class="top-banner-container">
-        <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="top-banner" id="startBanner">
-    </div>
-
     <!-- CONTENIDO DINÁMICO (SECCIONES INDEPENDIENTES) -->
     <main>
-        <!-- SECCIÓN: INICIO -->
+        <!-- SECCIÓN 1: INICIO (CON BANNER EXCLUSIVO) -->
         <section id="inicio" class="page-section active">
             <div class="hero">
                 <h1>Un lugar para conectar, adorar y crecer juntos</h1>
                 <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
+                
+                <!-- EL BANNER SE ENCUENTRA ÚNICAMENTE AQUÍ -->
+                <div class="banner-container">
+                    <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner">
+                </div>
+
                 <button class="btn-primary" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
             </div>
         </section>
 
-        <!-- SECCIÓN: NOSOTROS -->
+        <!-- SECCIÓN 2: NOSOTROS (SIN BANNER) -->
         <section id="nosotros" class="page-section">
             <h2 class="section-title">Nuestra Esencia</h2>
             <div class="grid-cards">
@@ -329,7 +338,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN: REUNIONES -->
+        <!-- SECCIÓN 3: REUNIONES (SIN BANNER) -->
         <section id="reuniones" class="page-section">
             <h2 class="section-title">Nuestras Reuniones</h2>
             <div class="grid-cards">
@@ -346,7 +355,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN: CONTACTO -->
+        <!-- SECCIÓN 4: CONTACTO (SIN BANNER) -->
         <section id="contacto" class="page-section">
             <h2 class="section-title">Ponte en Contacto</h2>
             <div class="card contact-info">
