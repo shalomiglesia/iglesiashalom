@@ -382,9 +382,100 @@
             font-weight: 800;
             color: var(--brand-blue);
             text-align: center;
+            margin-bottom: 2rem;
         }
 
-        .contact-info { text-align: center; max-width: 600px; margin: 0 auto; }
+        /* --- NUEVA SECCIÓN CONTACTO --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .contact-box {
+            background: var(--accent-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+        }
+
+        .contact-box h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brand-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--brand-blue);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.80rem 1rem;
+            border: 1px solid rgba(226, 232, 240, 1);
+            border-radius: 8px;
+            background-color: var(--primary-bg);
+            font-size: 0.95rem;
+            color: var(--text-color);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--brand-blue);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .char-counter {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.3rem;
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--brand-blue);
+            margin-bottom: 0.4rem;
+        }
+
+        .info-value-box {
+            padding: 0.80rem 1rem;
+            border: 1px solid rgba(226, 232, 240, 1);
+            border-radius: 8px;
+            background-color: var(--primary-bg);
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
 
         footer {
             text-align: center;
@@ -399,6 +490,7 @@
         @media (max-width: 980px) {
             .hero-content-grid, .hero-three-columns { grid-template-columns: 1fr; }
             .mini-cards-grid { grid-template-columns: 1fr; }
+            .contact-container { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 868px) {
@@ -562,12 +654,49 @@
         </section>
 
         <section id="contacto" class="page-section">
-            <h2 class="section-title">Ponte en Contacto</h2>
-            <div class="card contact-info">
-                <h3>Te esperamos</h3>
-                <p>Si tienes dudas o deseas visitarnos, comunícate con nosotros.</p>
-                <p><strong>Dirección:</strong> Av. Principal #123</p>
-                <p><strong>Correo:</strong> contacto@shalom.org</p>
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-container">
+                <!-- COSTADO IZQUIERDO: FORMULARIO ESCRÍBENOS -->
+                <div class="contact-box">
+                    <h3>Escríbenos</h3>
+                    <form id="contactForm" onsubmit="event.preventDefault();">
+                        <div class="form-group">
+                            <label for="inputNombre">Nombre</label>
+                            <input type="text" id="inputNombre" class="form-input" placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCorreo">Correo</label>
+                            <input type="email" id="inputCorreo" class="form-input" placeholder="tu@correo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNumero">Número</label>
+                            <input type="tel" id="inputNumero" class="form-input" placeholder="+56 9 ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputMensaje">Mensaje</label>
+                            <textarea id="inputMensaje" class="form-input" maxlength="1000" placeholder="Escribe tu mensaje aquí..." oninput="updateCharCount(this)"></textarea>
+                            <div class="char-counter" id="charCounter">0 / 1000 caracteres</div>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">Enviar Mensaje</button>
+                    </form>
+                </div>
+
+                <!-- COSTADO DERECHO: INFORMACIÓN EN EL MISMO FORMATO -->
+                <div class="contact-box">
+                    <h3>Información de Contacto</h3>
+                    <div class="info-item">
+                        <label>Dirección</label>
+                        <div class="info-value-box">Del Ferrocarril 1538, Maipú</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Correo</label>
+                        <div class="info-value-box">(pronta inserción)</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Número</label>
+                        <div class="info-value-box">(pronta inserción)</div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -590,6 +719,11 @@
             if (element) element.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateCharCount(textarea) {
+            const counter = document.getElementById('charCounter');
+            counter.textContent = `${textarea.value.length} / 1000 caracteres`;
         }
 
         document.getElementById('startBanner').addEventListener('click', function() {
