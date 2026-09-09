@@ -183,6 +183,17 @@
             box-shadow: 0 16px 36px rgba(30, 58, 138, 0.18);
         }
 
+        /* ESTRUCTURA EN DOS COLUMNAS DEBAJO DEL BANNER */
+        .hero-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 2.5rem;
+        }
+
         /* ESTRUCTURA DE TRES COLUMNAS (TÍTULO - IMAGEN CENTRO - TARJETA DERECHA) */
         .hero-three-columns {
             display: grid;
@@ -243,6 +254,24 @@
 
         .hero-card-right p:last-child {
             margin-bottom: 0;
+        }
+
+        .hero-card-right .quote {
+            font-style: italic;
+            color: var(--brand-blue);
+            font-weight: 600;
+            margin-top: 1.2rem;
+            margin-bottom: 0.4rem;
+            border-left: 3px solid var(--brand-gold);
+            padding-left: 0.8rem;
+        }
+
+        .hero-card-right .verse {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--brand-gold);
+            margin-bottom: 0;
+            text-align: right;
         }
 
         .hero-card-right .highlight-text {
@@ -422,6 +451,7 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 980px) {
+            .hero-content-grid,
             .hero-three-columns {
                 grid-template-columns: 1fr;
                 gap: 1.8rem;
@@ -488,12 +518,29 @@
                     <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
                 </div>
 
-                <!-- BANNER principal -->
+                <!-- BANNER PRINCIPAL -->
                 <div class="banner-container">
                     <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner">
                 </div>
 
-                <!-- ESTRUCTURA DE TRES COLUMNAS (TÍTULO - IMAGEN CENTRO - TARJETA INFORMATIVA) -->
+                <!-- BLOQUE 1 DEBAJO DEL BANNER: PREPARANDO UN LUGAR -->
+                <div class="hero-content-grid">
+                    <!-- Título costado izquierdo -->
+                    <div class="hero-title-left">
+                        <h2>Estamos preparando un lugar para encontrarnos</h2>
+                    </div>
+
+                    <!-- Tarjeta informativa costado derecho -->
+                    <div class="hero-card-right">
+                        <p>Nuestra iglesia está construyendo un nuevo espacio digital para estar más cerca de nuestra comunidad.</p>
+                        <p>Queremos salir a buscar, escuchar, servir y compartir el mensaje de Jesucristo con cada persona que necesite esperanza.</p>
+                        <p>Pronto estaremos contigo.</p>
+                        <p class="quote">“Porque el Hijo del Hombre vino a buscar y a salvar lo que se había perdido.”</p>
+                        <p class="verse">Lucas 19:10</p>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 2: LA MISIÓN COMUENZA DONDE TERMINA LA COMODIDAD (3 COLUMNAS) -->
                 <div class="hero-three-columns">
                     <!-- 1. Título al costado izquierdo -->
                     <div class="hero-title-left">
