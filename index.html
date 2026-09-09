@@ -135,6 +135,29 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
+            text-align: center;
+        }
+
+        /* TEXTO ANTES DEL BANNER (RESTAURADO) */
+        .hero-header {
+            margin-bottom: 2rem;
+        }
+
+        .hero-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--brand-blue);
+            max-width: 800px;
+            margin: 0 auto 1.2rem auto;
+            line-height: 1.2;
+        }
+
+        .hero-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
         }
 
         /* BANNER EXCLUSIVO DE INICIO */
@@ -171,7 +194,7 @@
             margin-bottom: 2rem;
         }
 
-        /* Título costado izquierdo (Estructura centrada hacia abajo) */
+        /* Título costado izquierdo */
         .hero-title-left {
             display: flex;
             flex-direction: column;
@@ -179,8 +202,8 @@
             text-align: left;
         }
 
-        .hero-title-left h1 {
-            font-size: 2.5rem;
+        .hero-title-left h2 {
+            font-size: 2.3rem;
             font-weight: 800;
             color: var(--brand-blue);
             line-height: 1.25;
@@ -321,13 +344,17 @@
                 flex-wrap: wrap;
             }
 
+            .hero-header h1 {
+                font-size: 2.2rem;
+            }
+
             .hero-content-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
-            .hero-title-left h1 {
-                font-size: 2rem;
+            .hero-title-left h2 {
+                font-size: 1.8rem;
                 text-align: center;
             }
         }
@@ -356,6 +383,12 @@
         <!-- SECCIÓN 1: INICIO -->
         <section id="inicio" class="page-section active">
             <div class="hero">
+                <!-- TEXTO RESTAURADO ANTES DEL BANNER -->
+                <div class="hero-header">
+                    <h1>Un lugar para conectar, adorar y crecer juntos</h1>
+                    <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
+                </div>
+
                 <!-- BANNER -->
                 <div class="banner-container">
                     <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner">
@@ -365,7 +398,7 @@
                 <div class="hero-content-grid">
                     <!-- Título a la izquierda -->
                     <div class="hero-title-left">
-                        <h1>Estamos preparando un lugar para encontrarnos</h1>
+                        <h2>Estamos preparando un lugar para encontrarnos</h2>
                     </div>
 
                     <!-- Tarjeta informativa a la derecha -->
