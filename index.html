@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- NUEVA PALETA CÁLIDA, CELESTIAL Y ESPIRITUAL --- */
+        /* --- PALETA CÁLIDA, CELESTIAL Y ESPIRITUAL --- */
         :root {
             --primary-bg: #fbfbfa;        /* Blanco cálido/marfil de fondo */
             --accent-bg: #ffffff;         /* Fondo blanco para tarjetas */
@@ -104,7 +104,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 3rem 5%;
+            padding: 2rem 5%;
         }
 
         .page-section {
@@ -134,32 +134,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 1rem 1.5rem;
+            width: 100%;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--brand-blue);
-            max-width: 800px;
-            margin-bottom: 1.2rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        /* BANNER UBICADO EXCLUSIVAMENTE EN LA SECCIÓN INICIO */
+        /* BANNER EXCLUSIVO DE INICIO */
         .banner-container {
             width: 100%;
-            max-width: 950px;
+            max-width: 1100px;
             margin-bottom: 2.5rem;
             display: flex;
             justify-content: center;
@@ -179,6 +160,67 @@
             box-shadow: 0 16px 36px rgba(30, 58, 138, 0.18);
         }
 
+        /* ESTRUCTURA EN DOS COLUMNAS DEBAJO DEL BANNER */
+        .hero-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 2rem;
+        }
+
+        /* Título costado izquierdo (Estructura centrada hacia abajo) */
+        .hero-title-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .hero-title-left h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--brand-blue);
+            line-height: 1.25;
+        }
+
+        /* Tarjeta informativa costado derecho */
+        .hero-card-right {
+            background: var(--accent-bg);
+            padding: 2.2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            text-align: left;
+        }
+
+        .hero-card-right p {
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card-right .quote {
+            font-style: italic;
+            color: var(--brand-blue);
+            font-weight: 600;
+            margin-top: 1.2rem;
+            margin-bottom: 0.4rem;
+            border-left: 3px solid var(--brand-gold);
+            padding-left: 0.8rem;
+        }
+
+        .hero-card-right .verse {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--brand-gold);
+            margin-bottom: 0;
+            text-align: right;
+        }
+
         .btn-primary {
             background-color: var(--brand-blue);
             color: #ffffff;
@@ -191,6 +233,7 @@
             cursor: pointer;
             border: none;
             font-size: 1rem;
+            margin-top: 1rem;
         }
 
         .btn-primary:hover {
@@ -198,7 +241,7 @@
             background-color: var(--brand-gold);
         }
 
-        /* --- ESTILOS DE TARJETAS Y CONTENIDO --- */
+        /* --- ESTILOS DE TARJETAS Y CONTENIDO GENERAL --- */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -265,7 +308,7 @@
         }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
+        @media (max-width: 868px) {
             header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -278,8 +321,14 @@
                 flex-wrap: wrap;
             }
 
-            .hero h1 {
-                font-size: 2.2rem;
+            .hero-content-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .hero-title-left h1 {
+                font-size: 2rem;
+                text-align: center;
             }
         }
     </style>
@@ -304,22 +353,36 @@
 
     <!-- CONTENIDO DINÁMICO (SECCIONES INDEPENDIENTES) -->
     <main>
-        <!-- SECCIÓN 1: INICIO (CON BANNER EXCLUSIVO) -->
+        <!-- SECCIÓN 1: INICIO -->
         <section id="inicio" class="page-section active">
             <div class="hero">
-                <h1>Un lugar para conectar, adorar y crecer juntos</h1>
-                <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
-                
-                <!-- EL BANNER SE ENCUENTRA ÚNICAMENTE AQUÍ -->
+                <!-- BANNER -->
                 <div class="banner-container">
                     <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner">
+                </div>
+
+                <!-- CONTENIDO EN DOS COLUMNAS DEBAJO DEL BANNER -->
+                <div class="hero-content-grid">
+                    <!-- Título a la izquierda -->
+                    <div class="hero-title-left">
+                        <h1>Estamos preparando un lugar para encontrarnos</h1>
+                    </div>
+
+                    <!-- Tarjeta informativa a la derecha -->
+                    <div class="hero-card-right">
+                        <p>Nuestra iglesia está construyendo un nuevo espacio digital para estar más cerca de nuestra comunidad.</p>
+                        <p>Queremos salir a buscar, escuchar, servir y compartir el mensaje de Jesucristo con cada persona que necesite esperanza.</p>
+                        <p>Pronto estaremos contigo.</p>
+                        <p class="quote">“Porque el Hijo del Hombre vino a buscar y a salvar lo que se había perdido.”</p>
+                        <p class="verse">Lucas 19:10</p>
+                    </div>
                 </div>
 
                 <button class="btn-primary" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
             </div>
         </section>
 
-        <!-- SECCIÓN 2: NOSOTROS (SIN BANNER) -->
+        <!-- SECCIÓN 2: NOSOTROS -->
         <section id="nosotros" class="page-section">
             <h2 class="section-title">Nuestra Esencia</h2>
             <div class="grid-cards">
@@ -338,7 +401,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 3: REUNIONES (SIN BANNER) -->
+        <!-- SECCIÓN 3: REUNIONES -->
         <section id="reuniones" class="page-section">
             <h2 class="section-title">Nuestras Reuniones</h2>
             <div class="grid-cards">
@@ -355,7 +418,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 4: CONTACTO (SIN BANNER) -->
+        <!-- SECCIÓN 4: CONTACTO -->
         <section id="contacto" class="page-section">
             <h2 class="section-title">Ponte en Contacto</h2>
             <div class="card contact-info">
