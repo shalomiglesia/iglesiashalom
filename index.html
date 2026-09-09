@@ -372,10 +372,31 @@
             padding: 2.5rem;
             border-radius: 16px;
             border: 1px solid rgba(226, 232, 240, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card h3 { font-size: 1.5rem; font-weight: 700; color: var(--brand-blue); margin-bottom: 1rem; }
         .card p { color: var(--text-muted); }
+
+        .card .card-quote {
+            font-style: italic;
+            color: var(--brand-blue);
+            font-weight: 600;
+            margin-top: 1.2rem;
+            border-left: 3px solid var(--brand-gold);
+            padding-left: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .card .card-verse {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--brand-gold);
+            text-align: right;
+            margin-top: 0.4rem;
+        }
 
         .section-title {
             font-size: 2.2rem;
@@ -637,7 +658,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN NOSOTROS (ACTUALIZADA CON FUNDAMENTO BÍBLICO) -->
+        <!-- SECCIÓN NOSOTROS (ACTUALIZADA) -->
         <section id="nosotros" class="page-section">
             <h2 class="section-title">Nuestra Identidad y Fe</h2>
             
@@ -649,20 +670,32 @@
 
             <div class="grid-cards">
                 <div class="card">
-                    <h3>Fundamentados en la Palabra</h3>
-                    <p>Reconocemos la Biblia como la voluntad escrita de Dios y nuestra autoridad suprema de fe y conducta (2 Timoteo 3:16). Buscamos enseñar la verdad del Evangelio con fidelidad y aplicarla al día a día.</p>
+                    <div>
+                        <h3>Fundamentados en la Palabra</h3>
+                        <p>Reconocemos la Biblia como la voluntad escrita de Dios y nuestra autoridad suprema de fe y conducta (2 Timoteo 3:16). Buscamos enseñar la verdad del Evangelio con fidelidad y aplicarla al día a día.</p>
+                    </div>
                 </div>
                 <div class="card">
-                    <h3>Comunión y Amor Fraterno</h3>
-                    <p>Cristo nos llamó a amarnos unos a otros (Juan 13:34-35). Creemos en una iglesia que camina junta, se apoya en momentos de necesidad y sirve de refugio de gracia y restauración.</p>
+                    <div>
+                        <h3>Comunión y Amor Fraterno</h3>
+                        <p>Cristo nos llamó a amarnos unos a otros (Juan 13:34-35). Creemos en una iglesia que camina junta, se apoya en momentos de necesidad y sirve de refugio de gracia y restauración.</p>
+                    </div>
                 </div>
                 <div class="card">
-                    <h3>Adoración en Espíritu y Verdad</h3>
-                    <p>La adoración trasciende el canto; es un estilo de vida de entrega a Dios (Juan 4:23-24). Nos reunimos para exaltar a Jesús y rendir nuestras vidas en gratitud por su sacrificio.</p>
+                    <div>
+                        <h3>Adoración en Espíritu y Verdad</h3>
+                        <p>La adoración trasciende el canto; es un estilo de vida de entrega a Dios (Juan 4:23-24). Nos reunimos para exaltar a Jesús y rendir nuestras vidas en gratitud por su sacrificio.</p>
+                    </div>
                 </div>
                 <div class="card">
-                    <h3>Enviados a Servir y Compartir</h3>
-                    <p>Respondemos al mandato de llevar las buenas nuevas y hacer discípulos (Mateo 28:19-20). Existimos para salir de nuestras cuatro paredes y ser luz y sal en nuestra sociedad.</p>
+                    <div>
+                        <h3>Enviados a Servir y Compartir</h3>
+                        <p>Respondemos al mandato de llevar las buenas nuevas y hacer discípulos (Mateo 28:19-20). Existimos para salir de nuestras cuatro paredes y ser luz y sal en nuestra sociedad.</p>
+                    </div>
+                    <div>
+                        <p class="card-quote">“Si confiesas con tu boca que Jesús es el Señor y crees en tu corazón que Dios lo levantó de entre los muertos, serás salvo.”</p>
+                        <p class="card-verse">Romanos 10:9</p>
+                    </div>
                 </div>
             </div>
         </section>
