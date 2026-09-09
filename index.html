@@ -160,27 +160,60 @@
             font-weight: 400;
         }
 
-        /* BANNER EXCLUSIVO DE INICIO */
+        /* BANNER EXCLUSIVO DE INICIO CON BOTÓN DE INSTAGRAM DENTRO */
         .banner-container {
             width: 100%;
             max-width: 1100px;
             margin-bottom: 2.5rem;
-            display: flex;
-            justify-content: center;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.12);
         }
 
         .hero-banner {
             width: 100%;
             height: auto;
-            border-radius: 16px;
-            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.12);
+            display: block;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
-        .hero-banner:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 36px rgba(30, 58, 138, 0.18);
+        .banner-container:hover .hero-banner {
+            transform: scale(1.01);
+        }
+
+        /* BOTÓN DE INSTAGRAM DENTRO DEL BANNER */
+        .banner-instagram-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .banner-instagram-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .banner-instagram-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
         }
 
         /* ESTRUCTURA EN DOS COLUMNAS DEBAJO DEL BANNER */
@@ -402,51 +435,15 @@
             margin-bottom: 1rem;
         }
 
-        /* --- FOOTER Y BOTÓN DE INSTAGRAM --- */
+        /* --- FOOTER --- */
         footer {
             text-align: center;
-            padding: 2.5rem 1rem;
+            padding: 2rem 1rem;
             background-color: #ffffff;
             color: var(--text-muted);
             font-size: 0.85rem;
             border-top: 1px solid rgba(226, 232, 240, 0.8);
             margin-top: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .instagram-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: #ffffff;
-            padding: 0.65rem 1.4rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25);
-        }
-
-        .instagram-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(220, 39, 67, 0.35);
-        }
-
-        .instagram-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
         }
 
         /* --- RESPONSIVE --- */
@@ -486,6 +483,13 @@
             .hero-header h1 {
                 font-size: 2.2rem;
             }
+
+            .banner-instagram-btn {
+                bottom: 12px;
+                right: 12px;
+                padding: 0.55rem 1rem;
+                font-size: 0.82rem;
+            }
         }
     </style>
 </head>
@@ -518,9 +522,16 @@
                     <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
                 </div>
 
-                <!-- BANNER PRINCIPAL -->
+                <!-- BANNER PRINCIPAL CON BOTÓN DE INSTAGRAM EN SU INTERIOR -->
                 <div class="banner-container">
                     <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner">
+                    
+                    <a href="https://www.instagram.com/centroadoracionshalom?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="banner-instagram-btn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        Síguenos en Instagram
+                    </a>
                 </div>
 
                 <!-- BLOQUE 1 DEBAJO DEL BANNER: PREPARANDO UN LUGAR -->
@@ -654,14 +665,6 @@
 
     <!-- PIE DE PÁGINA -->
     <footer>
-        <div class="social-links">
-            <a href="https://www.instagram.com/centroadoracionshalom?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="instagram-btn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                Síguenos en Instagram
-            </a>
-        </div>
         <p>&copy; 2026 Centro de Adoración Shalom. Todos los derechos reservados.</p>
     </footer>
 
