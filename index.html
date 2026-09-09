@@ -385,12 +385,13 @@
             margin-bottom: 2rem;
         }
 
-        /* --- NUEVA SECCIÓN CONTACTO --- */
+        /* --- SECCIÓN CONTACTO Y MAPA DINÁMICO --- */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
             align-items: start;
+            margin-bottom: 2rem;
         }
 
         .contact-box {
@@ -475,6 +476,23 @@
             background-color: var(--primary-bg);
             font-size: 0.95rem;
             color: var(--text-color);
+        }
+
+        /* CONTENEDOR DEL MAPA DINÁMICO */
+        .map-container {
+            width: 100%;
+            height: 380px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            background-color: #cbd5e1;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         footer {
@@ -655,6 +673,7 @@
 
         <section id="contacto" class="page-section">
             <h2 class="section-title">Contacto</h2>
+            
             <div class="contact-container">
                 <!-- COSTADO IZQUIERDO: FORMULARIO ESCRÍBENOS -->
                 <div class="contact-box">
@@ -697,6 +716,16 @@
                         <div class="info-value-box">(pronta inserción)</div>
                     </div>
                 </div>
+            </div>
+
+            <!-- MAPA DINÁMICO ABAJO DEL TODO -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.026362846875!2d-70.7602334!3d-33.5137024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c332560b454d%3A0xe74488be69d58ec7!2sDel%20Ferrocarril%201538%2C%20Maip%C3%BA%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1710000000000!5m2!1ses!2scl" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </section>
     </main>
