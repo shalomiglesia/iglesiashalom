@@ -288,17 +288,17 @@
             display: block;
         }
 
-        /* REGLA BASE DE MOVIMIENTO Y BORDES DORADOS PARA TODAS LAS TARJETAS */
+        /* REGLA BASE DE MOVIMIENTO Y BORDES NEUTROS PARA TODAS LAS TARJETAS */
         .hero-card-right,
         .mini-card,
         .card,
         .side-verse-card,
         .contact-box {
             background: var(--accent-bg);
-            border: 2px solid var(--brand-gold);
+            border: 1px solid rgba(226, 232, 240, 0.8);
             border-radius: 16px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         /* EFECTO DE ELEVACIÓN SUTIL AL PASAR EL CURSOR POR CUALQUIER TARJETA */
@@ -308,7 +308,7 @@
         .side-verse-card:hover,
         .contact-box:hover {
             transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(217, 119, 6, 0.2);
+            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.1);
         }
 
         .hero-card-right {
@@ -402,10 +402,10 @@
             margin-top: 2rem;
         }
 
-        /* TARJETA EXTERNA AL COSTADO DERECHO CON RESALTE ADICIONAL EN EL BORDE IZQUIERDO */
+        /* TARJETA EXTERNA AL COSTADO DERECHO */
         .side-verse-card {
             padding: 2.5rem;
-            border-left: 6px solid var(--brand-gold);
+            border-left: 4px solid var(--brand-gold);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -530,7 +530,7 @@
             height: 380px;
             border-radius: 16px;
             overflow: hidden;
-            border: 2px solid var(--brand-gold);
+            border: 1px solid rgba(226, 232, 240, 0.8);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
             background-color: #cbd5e1;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -538,7 +538,7 @@
 
         .map-container:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(217, 119, 6, 0.2);
+            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.1);
         }
 
         .map-container iframe {
