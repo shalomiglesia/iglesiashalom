@@ -173,7 +173,7 @@
             display: none;
             width: 100%;
             max-width: 1100px;
-            content-visibility: auto; /* Acelera renderizado omitiendo secciones invisibles */
+            content-visibility: auto;
         }
 
         .page-section.active {
@@ -212,7 +212,30 @@
             margin: 0 auto;
         }
 
-        /* BANNERS AJUSTADOS PARA OCUPAR MENOS ESPACIO VERTICAL */
+        /* BANNER PRINCIPAL RESTAURADO A SU TAMAÑO ORIGINAL */
+        .banner-container-hero {
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 2rem;
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.1);
+            background-color: #cbd5e1;
+            height: auto; /* Tamaño natural original */
+        }
+
+        .banner-container-hero .hero-banner {
+            width: 100%;
+            height: auto; /* Mantiene la proporción natural completa */
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .banner-container-hero:hover .hero-banner { transform: scale(1.015); }
+
+        /* BANNERS SECUNDARIOS (ANGOSTOS / COMPACTOS) */
         .banner-container {
             width: 100%;
             max-width: 1100px;
@@ -222,13 +245,13 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(30, 58, 138, 0.1);
             background-color: #cbd5e1;
-            height: 280px; /* Altura compacta fija */
+            height: 280px; /* Altura compacta para banners secundarios */
         }
 
         .hero-banner {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Recorta la imagen limpiamente manteniendo proporción */
+            object-fit: cover;
             object-position: center;
             display: block;
             cursor: pointer;
@@ -237,7 +260,7 @@
 
         .banner-container:hover .hero-banner { transform: scale(1.015); }
 
-        /* OVERLAY TEXTO PARA BANNERS CON MENOS ESPACIO */
+        /* OVERLAY TEXTO PARA BANNERS SECUNDARIOS */
         .banner-overlay-text {
             position: absolute;
             top: 50%;
@@ -269,10 +292,10 @@
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
-        /* BOTONES SOBRE BANNERS COMPACTOS */
+        /* BOTONES SOBRE BANNERS */
         .banner-instagram-btn {
             position: absolute;
-            bottom: 14px;
+            bottom: 18px;
             z-index: 10;
             display: inline-flex;
             align-items: center;
@@ -280,18 +303,18 @@
             gap: 0.5rem;
             background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
             color: #ffffff;
-            padding: 0.55rem 1.2rem;
+            padding: 0.6rem 1.3rem;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             text-decoration: none;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
-        .banner-instagram-btn.left { left: 15px; }
-        .banner-instagram-btn.right { right: 15px; }
+        .banner-instagram-btn.left { left: 20px; }
+        .banner-instagram-btn.right { right: 20px; }
 
         .banner-instagram-btn:hover {
             transform: translateY(-2px) scale(1.02);
@@ -634,7 +657,7 @@
         /* --- REGLAS RESPONSIVAS --- */
         @media (max-width: 980px) {
             .hero-three-columns { grid-template-columns: 1fr; }
-            .banner-container { height: 220px; } /* Más ajustado en tablets */
+            .banner-container { height: 220px; }
         }
 
         @media (max-width: 768px) {
@@ -651,7 +674,7 @@
             main { padding: 1rem 3%; }
 
             .banner-container {
-                height: 180px; /* Reducción optimizada para teléfonos */
+                height: 180px;
                 border-radius: 10px;
             }
 
@@ -670,14 +693,14 @@
                 height: 36px;
                 padding: 0;
                 border-radius: 50%;
-                bottom: 8px;
+                bottom: 10px;
             }
 
             .banner-instagram-btn .btn-text { display: none; }
             .banner-instagram-btn svg { width: 18px; height: 18px; }
 
-            .banner-instagram-btn.left { left: 8px; }
-            .banner-instagram-btn.right { right: 8px; }
+            .banner-instagram-btn.left { left: 10px; }
+            .banner-instagram-btn.right { right: 10px; }
 
             .banner-contact-btn { 
                 bottom: 8px; 
@@ -721,8 +744,8 @@
                     <p>Bienvenido al Centro de Adoración Shalom. Experimenta una comunidad enfocada en la fe, la esperanza y el amor.</p>
                 </div>
 
-                <!-- BANNER PRINCIPAL ANGOSTO -->
-                <div class="banner-container">
+                <!-- BANNER PRINCIPAL CON SU TAMAÑO ORIGINAL RESTAURADO -->
+                <div class="banner-container-hero">
                     <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner" fetchpriority="high" decoding="async">
                     
                     <a href="https://www.instagram.com/simientedelavid?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="banner-instagram-btn left" title="Simiente de la Vida">
@@ -797,7 +820,7 @@
                     </div>
                 </div>
 
-                <!-- BANNER CONTACTO ANGOSTO -->
+                <!-- BANNER CONTACTO SECUNDARIO (ANGOSTO) -->
                 <div class="banner-container">
                     <img src="https://i.postimg.cc/bwjmY7JR/Chat-GPT-Image-9-sept-2026-02-12-43-p-m.png" alt="Banner Contacto Shalom" class="hero-banner" loading="lazy" decoding="async">
                     <button class="banner-contact-btn" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[3])">
@@ -847,7 +870,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN REUNIONES CON BANNER ANGOSTO -->
+        <!-- SECCIÓN REUNIONES (BANNER ANGOSTO) -->
         <section id="reuniones" class="page-section">
             <div class="banner-container">
                 <img src="https://i.postimg.cc/pdHRwwTB/Chat-GPT-Image-10-sept-2026-12-08-53-a-m.png" alt="Banner Reuniones Shalom" class="hero-banner" fetchpriority="high" decoding="async">
