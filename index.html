@@ -499,6 +499,32 @@
         .card h3 { font-size: 1.35rem; font-weight: 700; color: var(--brand-blue); margin-bottom: 0.8rem; }
         .card p { color: var(--text-muted); }
 
+        /* ESTILOS ESPECÍFICOS PARA LAS TARJETAS DE REUNIONES */
+        .card .schedule-item {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed rgba(226, 232, 240, 0.8);
+        }
+
+        .card .schedule-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .card .schedule-title {
+            font-weight: 700;
+            color: var(--brand-blue);
+            display: block;
+            font-size: 0.98rem;
+        }
+
+        .card .schedule-time {
+            color: var(--brand-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
         .side-by-side-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -843,7 +869,7 @@
                 <p class="verse">Hechos 2:42</p>
             </div>
 
-            <!-- BANNER NOSOTROS (OPTIMIZADO CON MANEJO DE ERRORES Y CARGA PRIORITARIA) -->
+            <!-- BANNER NOSOTROS -->
             <div class="banner-container" style="margin-bottom: 2rem;">
                 <img 
                     src="https://i.postimg.cc/vBM8nc6n/Chat-GPT-Image-10-sept-2026-00-34-45.png" 
@@ -894,16 +920,66 @@
             </div>
 
             <h2 class="section-title">Nuestras Reuniones</h2>
+
             <div class="grid-cards">
                 <div class="card">
-                    <h3>Reunión General</h3>
-                    <p><strong>Domingos:</strong> 10:00 AM</p>
-                    <p>Un tiempo de alabanza, enseñanza y comunión para toda la familia.</p>
+                    <h3>Lunes</h3>
+                    <div class="schedule-item">
+                        <span class="schedule-title">Ministerio Femenino</span>
+                        <span class="schedule-time">15:00 Horas</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-title">Oración por Zoom</span>
+                        <span class="schedule-time">20:00 Horas</span>
+                    </div>
                 </div>
+
                 <div class="card">
-                    <h3>Noche de Oración</h3>
-                    <p><strong>Miércoles:</strong> 7:30 PM</p>
-                    <p>Un espacio intencional para la intercesión y la búsqueda profunda.</p>
+                    <h3>Martes</h3>
+                    <div class="schedule-item">
+                        <span class="schedule-title">Discipulado por Zoom</span>
+                        <span class="schedule-time">19:30 Horas</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Miércoles</h3>
+                    <div class="schedule-item">
+                        <span class="schedule-title">Reunión de Varones</span>
+                        <span class="schedule-time">20:00 Horas</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-title">Oración por Zoom</span>
+                        <span class="schedule-time">20:00 Horas</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Jueves</h3>
+                    <div class="schedule-item">
+                        <span class="schedule-title">Culto</span>
+                        <span class="schedule-time">20:00 Horas</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Viernes</h3>
+                    <div class="schedule-item">
+                        <span class="schedule-title">Oración por Zoom</span>
+                        <span class="schedule-time">20:00 Horas</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Domingo</h3>
+                    <div class="schedule-item">
+                        <span class="schedule-title">Escuela Dominical</span>
+                        <span class="schedule-time">10:00 Horas</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-title">Culto</span>
+                        <span class="schedule-time">11:00 Horas</span>
+                    </div>
                 </div>
             </div>
         </section>
