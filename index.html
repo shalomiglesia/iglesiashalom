@@ -48,7 +48,7 @@
             overflow-x: hidden;
         }
 
-        /* --- ENCABEZADO --- */
+        /* --- ENCABEZADO Y NAVEGACIÓN --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -97,6 +97,16 @@
             line-height: 1;
         }
 
+        nav {
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        nav::-webkit-scrollbar {
+            display: none;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -113,6 +123,7 @@
             cursor: pointer;
             padding-bottom: 4px;
             border-bottom: 2px solid transparent;
+            display: inline-block;
         }
 
         nav a:hover, nav a.active {
@@ -120,7 +131,7 @@
             border-bottom-color: var(--brand-gold);
         }
 
-        /* --- CONTENIDO --- */
+        /* --- CONTENIDO PRINCIPAL --- */
         main {
             flex: 1;
             display: flex;
@@ -156,7 +167,7 @@
         .hero-header { margin-bottom: 2rem; }
 
         .hero-header h1 {
-            font-size: 3rem;
+            font-size: clamp(1.8rem, 4vw, 3rem);
             font-weight: 800;
             color: var(--brand-blue);
             max-width: 800px;
@@ -165,13 +176,13 @@
         }
 
         .hero-header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* CONTENEDOR DE BANNERS */
+        /* BANNERS ADAPTABLES */
         .banner-container {
             width: 100%;
             max-width: 1100px;
@@ -186,6 +197,8 @@
         .hero-banner {
             width: 100%;
             height: auto;
+            max-height: 500px;
+            object-fit: cover;
             display: block;
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -193,7 +206,7 @@
 
         .banner-container:hover .hero-banner { transform: scale(1.01); }
 
-        /* BOTONES DE INSTAGRAM Y CONTACTO */
+        /* BOTONES SOBRE BANNERS */
         .banner-instagram-btn {
             position: absolute;
             bottom: 20px;
@@ -248,10 +261,10 @@
             transform: translateY(-3px) scale(1.03);
         }
 
-        /* ESTRUCTURA BLOQUES Y TARJETAS */
+        /* ESTRUCTURA Y MIGRACIÓN GRID A RESPONSIVE */
         .hero-content-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
             align-items: center;
             width: 100%;
@@ -269,7 +282,7 @@
 
         .hero-title-left { text-align: left; }
         .hero-title-left h2 {
-            font-size: 2.1rem;
+            font-size: clamp(1.5rem, 3vw, 2.1rem);
             font-weight: 800;
             color: var(--brand-blue);
             line-height: 1.25;
@@ -279,16 +292,18 @@
             background-color: #cbd5e1;
             border-radius: 16px;
             overflow: hidden;
+            width: 100%;
         }
 
         .hero-image-center img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            max-height: 400px;
             object-fit: cover;
             display: block;
         }
 
-        /* REGLA BASE DE MOVIMIENTO Y BORDES NEUTROS PARA TODAS LAS TARJETAS */
+        /* TARJETAS GENERALES Y EFECTOS HOVER */
         .hero-card-right,
         .mini-card,
         .card,
@@ -301,7 +316,6 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* EFECTO DE ELEVACIÓN SUTIL AL PASAR EL CURSOR POR CUALQUIER TARJETA */
         .hero-card-right:hover,
         .mini-card:hover,
         .card:hover,
@@ -342,7 +356,7 @@
 
         .mini-cards-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.8rem;
             width: 100%;
             margin-bottom: 2.5rem;
@@ -393,16 +407,15 @@
         .card h3 { font-size: 1.5rem; font-weight: 700; color: var(--brand-blue); margin-bottom: 1rem; }
         .card p { color: var(--text-muted); }
 
-        /* CONTENEDOR PARALELO DE DOS TARJETAS */
+        /* SECCIÓN A LA PAR Y CONTACTO */
         .side-by-side-cards {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             align-items: stretch;
             margin-top: 2rem;
         }
 
-        /* TARJETA EXTERNA AL COSTADO DERECHO */
         .side-verse-card {
             padding: 2.5rem;
             border-left: 4px solid var(--brand-gold);
@@ -428,17 +441,16 @@
         }
 
         .section-title {
-            font-size: 2.2rem;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
             font-weight: 800;
             color: var(--brand-blue);
             text-align: center;
             margin-bottom: 2rem;
         }
 
-        /* --- SECCIÓN CONTACTO Y MAPA DINÁMICO --- */
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             align-items: start;
             margin-bottom: 2rem;
@@ -524,7 +536,7 @@
             color: var(--text-color);
         }
 
-        /* CONTENEDOR DEL MAPA DINÁMICO */
+        /* CONTENEDOR MAPA */
         .map-container {
             width: 100%;
             height: 380px;
@@ -557,19 +569,61 @@
             margin-top: auto;
         }
 
+        /* --- REGLAS MEDIA QUERIES (DISPOSITIVOS MÓVILES Y TABLETS) --- */
         @media (max-width: 980px) {
-            .hero-content-grid, .hero-three-columns { grid-template-columns: 1fr; }
-            .mini-cards-grid { grid-template-columns: 1fr; }
-            .contact-container { grid-template-columns: 1fr; }
-            .side-by-side-cards { grid-template-columns: 1fr !important; }
+            .hero-three-columns { 
+                grid-template-columns: 1fr; 
+            }
         }
 
-        @media (max-width: 868px) {
-            header { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
-            .banner-instagram-btn { bottom: 10px; padding: 0.5rem 0.8rem; font-size: 0.75rem; }
+        @media (max-width: 768px) {
+            header { 
+                flex-direction: column; 
+                align-items: stretch; 
+                gap: 1rem; 
+                padding: 0.8rem 4%;
+            }
+
+            .brand-container {
+                justify-content: center;
+            }
+
+            nav ul {
+                gap: 1.2rem;
+                justify-content: center;
+            }
+
+            main {
+                padding: 1.2rem 4%;
+            }
+
+            .banner-container {
+                border-radius: 12px;
+                margin-bottom: 1.5rem;
+            }
+
+            .banner-instagram-btn { 
+                bottom: 10px; 
+                padding: 0.5rem 0.9rem; 
+                font-size: 0.75rem; 
+            }
             .banner-instagram-btn.left { left: 8px; }
             .banner-instagram-btn.right { right: 8px; }
-            .banner-contact-btn { bottom: 10px; right: 10px; padding: 0.5rem 1rem; font-size: 0.8rem; }
+
+            .banner-contact-btn { 
+                bottom: 10px; 
+                right: 8px; 
+                padding: 0.5rem 1rem; 
+                font-size: 0.78rem; 
+            }
+
+            .hero-card-right, .card, .side-verse-card, .contact-box {
+                padding: 1.5rem;
+            }
+
+            .map-container {
+                height: 280px;
+            }
         }
     </style>
 </head>
