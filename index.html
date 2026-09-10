@@ -11,9 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- PRECARGA DEL LOGO Y BANNER PRINCIPAL DE ALTA PRIORIDAD -->
+    <!-- PRECARGA DEL LOGO Y BANNERS PRINCIPALES -->
     <link rel="preload" as="image" href="https://i.postimg.cc/t4wCVNKh/Chat-GPT-Image-9-sept-2026-02-19-18-p-m.png">
     <link rel="preload" as="image" href="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png">
+    <link rel="preload" as="image" href="https://i.postimg.cc/pdHRwwTB/Chat-GPT-Image-10-sept-2026-12-08-53-a-m.png">
 
     <!-- FUENTE MONTSERRAT -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
@@ -201,39 +202,36 @@
 
         .banner-container:hover .hero-banner { transform: scale(1.01); }
 
-        /* BANNER DINÁMICO REUNIONES (INSPIRADO EN EL CIELO Y BANNER PRINCIPAL) */
-        .meetings-banner {
-            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 30%, #38bdf8 70%, #1e3a8a 100%);
-            padding: 4rem 2rem;
+        /* OVERLAY TEXTO PARA BANNERS QUE CONTIENEN IMAGEN */
+        .banner-overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 850px;
             text-align: center;
-            color: #0f172a;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #ffffff;
+            z-index: 2;
+            pointer-events: none;
         }
 
-        .meetings-banner-quote {
-            font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+        .banner-overlay-quote {
+            font-size: clamp(1.1rem, 2.5vw, 1.55rem);
             font-style: italic;
             font-weight: 600;
-            max-width: 850px;
             line-height: 1.6;
-            margin-bottom: 1.2rem;
-            color: #0f172a;
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
         }
 
-        .meetings-banner-verse {
+        .banner-overlay-verse {
             font-size: clamp(0.95rem, 1.8vw, 1.15rem);
             font-weight: 800;
-            color: #b45309;
+            color: #fbbf24;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
         }
 
         /* BOTONES SOBRE BANNERS */
@@ -645,10 +643,6 @@
                 margin-bottom: 1.5rem;
             }
 
-            .meetings-banner {
-                padding: 2.5rem 1.25rem;
-            }
-
             .hero-card-right, .card, .side-verse-card, .contact-box {
                 padding: 1.25rem;
             }
@@ -658,7 +652,7 @@
             }
         }
 
-        /* DISPOSITIVOS PEQUEÑOS Y MÓVILES (BOTONES INSTAGRAM SOLO ÍCONO) */
+        /* DISPOSITIVOS PEQUEÑOS Y MÓVILES */
         @media (max-width: 600px) {
             .banner-instagram-btn {
                 width: 40px;
@@ -847,11 +841,14 @@
             </div>
         </section>
 
-        <!-- SECCIÓN REUNIONES CON BANNER EN CABECERA -->
+        <!-- SECCIÓN REUNIONES CON BANNER CON IMAGEN EN CABECERA -->
         <section id="reuniones" class="page-section">
-            <div class="banner-container meetings-banner">
-                <p class="meetings-banner-quote">«Y perseveraban en la doctrina de los apóstoles, en la comunión unos con otros, en el partimiento del pan y en las oraciones.»</p>
-                <span class="meetings-banner-verse">— Hechos 2:42</span>
+            <div class="banner-container">
+                <img src="https://i.postimg.cc/pdHRwwTB/Chat-GPT-Image-10-sept-2026-12-08-53-a-m.png" alt="Banner Reuniones Shalom" class="hero-banner" fetchpriority="high" decoding="async">
+                <div class="banner-overlay-text">
+                    <p class="banner-overlay-quote">«Y perseveraban en la doctrina de los apóstoles, en la comunión unos con otros, en el partimiento del pan y en las oraciones.»</p>
+                    <span class="banner-overlay-verse">— Hechos 2:42</span>
+                </div>
             </div>
 
             <h2 class="section-title">Nuestras Reuniones</h2>
