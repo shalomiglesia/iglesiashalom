@@ -11,9 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- PRECARGA CRÍTICA -->
+    <!-- PRECARGA CRÍTICA (INCLUYENDO BANNER NOSOTROS) -->
     <link rel="preload" as="image" href="https://i.postimg.cc/t4wCVNKh/Chat-GPT-Image-9-sept-2026-02-19-18-p-m.png">
     <link rel="preload" as="image" href="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png">
+    <link rel="preload" as="image" href="https://i.postimg.cc/vBM8nc6n/Chat-GPT-Image-10-sept-2026-00-34-45.png">
 
     <!-- FUENTE MONTSERRAT CON DISPLAY SWAP -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
@@ -222,12 +223,12 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(30, 58, 138, 0.1);
             background-color: #cbd5e1;
-            height: auto; /* Tamaño natural original */
+            height: auto;
         }
 
         .banner-container-hero .hero-banner {
             width: 100%;
-            height: auto; /* Mantiene la proporción natural completa */
+            height: auto;
             display: block;
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -235,7 +236,7 @@
 
         .banner-container-hero:hover .hero-banner { transform: scale(1.015); }
 
-        /* BANNERS SECUNDARIOS (ANGOSTOS / COMPACTOS) */
+        /* BANNERS SECUNDARIOS Y BANNER NOSOTROS */
         .banner-container {
             width: 100%;
             max-width: 1100px;
@@ -244,8 +245,8 @@
             border-radius: 14px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(30, 58, 138, 0.1);
-            background-color: #cbd5e1;
-            height: 280px; /* Altura compacta para banners secundarios */
+            background-color: #e2e8f0;
+            height: 280px;
         }
 
         .hero-banner {
@@ -842,9 +843,16 @@
                 <p class="verse">Hechos 2:42</p>
             </div>
 
-            <!-- BANNER SECCIÓN NOSOTROS (DEBAJO DEL VERSÍCULO Y SOBRE LAS TARJETAS) -->
+            <!-- BANNER NOSOTROS (OPTIMIZADO CON MANEJO DE ERRORES Y CARGA PRIORITARIA) -->
             <div class="banner-container" style="margin-bottom: 2rem;">
-                <img src="https://i.postimg.cc/vBM8nc6n/Chat-GPT-Image-10-sept-2026-00-34-45.png" alt="Banner Nosotros Shalom" class="hero-banner" loading="lazy" decoding="async">
+                <img 
+                    src="https://i.postimg.cc/vBM8nc6n/Chat-GPT-Image-10-sept-2026-00-34-45.png" 
+                    alt="Banner Nosotros Shalom" 
+                    class="hero-banner" 
+                    fetchpriority="high" 
+                    decoding="async"
+                    onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #1e3a8a, #d97706)'; this.parentElement.style.display='flex'; this.parentElement.style.alignItems='center'; this.parentElement.style.justifyContent='center'; this.parentElement.innerHTML='<p style=\'color:#ffffff; font-weight:700; text-align:center; padding:1rem;\'>Centro de Adoración Shalom — Nuestra Identidad</p>';"
+                >
             </div>
 
             <div class="grid-cards" style="margin-bottom: 1.8rem;">
@@ -875,7 +883,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN REUNIONES (BANNER ANGOSTO) -->
+        <!-- SECCIÓN REUNIONES -->
         <section id="reuniones" class="page-section">
             <div class="banner-container">
                 <img src="https://i.postimg.cc/pdHRwwTB/Chat-GPT-Image-10-sept-2026-12-08-53-a-m.png" alt="Banner Reuniones Shalom" class="hero-banner" fetchpriority="high" decoding="async">
