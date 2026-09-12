@@ -594,7 +594,108 @@
             margin-bottom: 1.5rem;
         }
 
-        /* --- SECCIÓN GALERÍA --- */
+        /* --- SECCIÓN GALERÍA & CARRUSEL 9:16 --- */
+        .carousel-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--brand-blue);
+            margin-bottom: 1rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 3rem auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
+            background-color: #0f172a;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(15, 23, 42, 0.6);
+            color: #ffffff;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--brand-gold);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--brand-gold);
+            transform: scale(1.2);
+        }
+
         .gallery-filters {
             display: flex;
             justify-content: center;
@@ -1161,40 +1262,51 @@
         <!-- SECCIÓN GALERÍA -->
         <section id="galeria" class="page-section">
             <h2 class="section-title">Nuestra Comunidad en Imágenes</h2>
+
+            <!-- CARRUSEL 9:16 CULTOS -->
+            <h3 class="carousel-title">Cultos</h3>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide" onclick="openLightboxFromSrc('https://i.postimg.cc/cL8Jn4NM/Whats-App-Image-2026-09-10-at-12-50-51-AM-(1).jpg', 'Culto Shalom 1')">
+                            <img src="https://i.postimg.cc/cL8Jn4NM/Whats-App-Image-2026-09-10-at-12-50-51-AM-(1).jpg" alt="Culto Shalom 1" loading="lazy" decoding="async">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightboxFromSrc('https://i.postimg.cc/Y0ZHrY0b/Whats-App-Image-2026-09-10-at-12-50-51-AM-(4).jpg', 'Culto Shalom 2')">
+                            <img src="https://i.postimg.cc/Y0ZHrY0b/Whats-App-Image-2026-09-10-at-12-50-51-AM-(4).jpg" alt="Culto Shalom 2" loading="lazy" decoding="async">
+                        </div>
+                        <div class="carousel-slide" onclick="openLightboxFromSrc('https://i.postimg.cc/1XLkhSY3/Whats-App-Image-2026-09-10-at-12-50-51-AM.jpg', 'Culto Shalom 3')">
+                            <img src="https://i.postimg.cc/1XLkhSY3/Whats-App-Image-2026-09-10-at-12-50-51-AM.jpg" alt="Culto Shalom 3" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+                    <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+                    <div class="carousel-dots" id="carouselDots">
+                        <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                        <span class="carousel-dot" onclick="goToSlide(1)"></span>
+                        <span class="carousel-dot" onclick="goToSlide(2)"></span>
+                    </div>
+                </div>
+            </div>
             
             <!-- FILTROS DE CATEGORÍA -->
             <div class="gallery-filters">
                 <button class="filter-btn active" onclick="filterGallery('todos', this)">Todas</button>
-                <button class="filter-btn" onclick="filterGallery('reuniones', this)">Reuniones</button>
-                <button class="filter-btn" onclick="filterGallery('comunidad', this)">Comunidad</button>
-                <button class="filter-btn" onclick="filterGallery('eventos', this)">Eventos</button>
+                <button class="filter-btn" onclick="filterGallery('cultos', this)">Cultos</button>
             </div>
 
-            <!-- CUADRÍCULA DE FOTOS -->
+            <!-- CUADRÍCULA DE FOTOS EXCLUSIVAS -->
             <div class="gallery-grid">
-                <div class="gallery-item" data-category="reuniones" onclick="openLightbox(this)">
-                    <img src="https://i.postimg.cc/x8nFxBzw/Whats-App-Image-2026-09-09-at-1-59-39-PM-(2).jpg" alt="Reunión Comunitaria" loading="lazy" decoding="async">
-                    <div class="gallery-item-caption">Reunión de Adoración</div>
+                <div class="gallery-item" data-category="cultos" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/cL8Jn4NM/Whats-App-Image-2026-09-10-at-12-50-51-AM-(1).jpg" alt="Culto Shalom 1" loading="lazy" decoding="async">
+                    <div class="gallery-item-caption">Culto de Adoración</div>
                 </div>
-                <div class="gallery-item" data-category="comunidad" onclick="openLightbox(this)">
-                    <img src="https://i.postimg.cc/t4wCVNKh/Chat-GPT-Image-9-sept-2026-02-19-18-p-m.png" alt="Logo e Identidad Shalom" loading="lazy" decoding="async">
-                    <div class="gallery-item-caption">Centro de Adoración Shalom</div>
+                <div class="gallery-item" data-category="cultos" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/Y0ZHrY0b/Whats-App-Image-2026-09-10-at-12-50-51-AM-(4).jpg" alt="Culto Shalom 2" loading="lazy" decoding="async">
+                    <div class="gallery-item-caption">Momento de Adoración</div>
                 </div>
-                <div class="gallery-item" data-category="eventos" onclick="openLightbox(this)">
-                    <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Horarios y Eventos" loading="lazy" decoding="async">
-                    <div class="gallery-item-caption">Actividades Especiales</div>
-                </div>
-                <div class="gallery-item" data-category="reuniones" onclick="openLightbox(this)">
-                    <img src="https://i.postimg.cc/pdHRwwTB/Chat-GPT-Image-10-sept-2026-12-08-53-a-m.png" alt="Congregación" loading="lazy" decoding="async">
-                    <div class="gallery-item-caption">Tiempos de Oración</div>
-                </div>
-                <div class="gallery-item" data-category="comunidad" onclick="openLightbox(this)">
-                    <img src="https://i.postimg.cc/pXy0vC1M/Chat-GPT-Image-10-sept-2026-01-06-58.png" alt="Contacto y Comunidad" loading="lazy" decoding="async">
-                    <div class="gallery-item-caption">Servicio a la Comunidad</div>
-                </div>
-                <div class="gallery-item" data-category="eventos" onclick="openLightbox(this)">
-                    <img src="https://i.postimg.cc/vBM8nc6n/Chat-GPT-Image-10-sept-2026-00-34-45.png" alt="Fe y Enseñanza" loading="lazy" decoding="async">
-                    <div class="gallery-item-caption">Enseñanza de la Palabra</div>
+                <div class="gallery-item" data-category="cultos" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/1XLkhSY3/Whats-App-Image-2026-09-10-at-12-50-51-AM.jpg" alt="Culto Shalom 3" loading="lazy" decoding="async">
+                    <div class="gallery-item-caption">Reunión de Culto</div>
                 </div>
             </div>
         </section>
@@ -1307,6 +1419,37 @@
             counter.textContent = `${textarea.value.length} / 1000 caracteres`;
         }
 
+        // LÓGICA DEL CARRUSEL (9:16)
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            if (track) {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+            
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
         // LÓGICA DE FILTRADO DE GALERÍA
         function filterGallery(category, btnElement) {
             const filterBtns = document.querySelectorAll('.filter-btn');
@@ -1327,12 +1470,16 @@
         function openLightbox(element) {
             const img = element.querySelector('img');
             const caption = element.querySelector('.gallery-item-caption');
+            openLightboxFromSrc(img.src, caption ? caption.textContent : img.alt);
+        }
+
+        function openLightboxFromSrc(src, captionText) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxCaption = document.getElementById('lightbox-caption');
 
-            lightboxImg.src = img.src;
-            lightboxCaption.textContent = caption ? caption.textContent : img.alt;
+            lightboxImg.src = src;
+            lightboxCaption.textContent = captionText;
             lightbox.classList.add('active');
         }
 
