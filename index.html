@@ -349,6 +349,49 @@
             transform: translateY(-2px) scale(1.02);
         }
 
+        /* CONTENEDOR BOTONES INICIO */
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-blue);
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background-color 0.25s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover { 
+            background-color: var(--brand-gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--brand-blue);
+            border: 2px solid var(--brand-blue);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--brand-blue);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
         /* ESTRUCTURA GENERAL */
         .hero-content-grid {
             display: grid;
@@ -468,20 +511,6 @@
 
         .mini-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
 
-        .btn-primary {
-            background-color: var(--brand-blue);
-            color: #ffffff;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: background-color 0.25s ease;
-        }
-
-        .btn-primary:hover { background-color: var(--brand-gold); }
-
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -565,6 +594,146 @@
             margin-bottom: 1.5rem;
         }
 
+        /* --- SECCIÓN GALERÍA --- */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background-color: var(--accent-bg);
+            color: var(--text-muted);
+            border: 1px solid rgba(226, 232, 240, 1);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--brand-blue);
+            color: #ffffff;
+            border-color: var(--brand-blue);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            background-color: #cbd5e1;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item.hide {
+            display: none;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0.8rem 0.6rem;
+            background: linear-gradient(transparent, rgba(15, 23, 42, 0.85));
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-caption {
+            opacity: 1;
+        }
+
+        /* LIGHTBOX / VISOR MODAL */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.92);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10001;
+            transition: color 0.2s ease;
+        }
+
+        .lightbox-close:hover { color: var(--brand-gold); }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: center;
+            width: 90%;
+        }
+
+        /* CONTACTO */
         .contact-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -710,6 +879,7 @@
             }
 
             .map-container { height: 240px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
         }
 
         @media (max-width: 600px) {
@@ -735,6 +905,8 @@
                 padding: 0.35rem 0.7rem; 
                 font-size: 0.7rem; 
             }
+
+            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -758,12 +930,14 @@
                 <li><a class="nav-link active" onclick="showSection('inicio', this)">Inicio</a></li>
                 <li><a class="nav-link" onclick="showSection('nosotros', this)">Nosotros</a></li>
                 <li><a class="nav-link" onclick="showSection('reuniones', this)">Reuniones</a></li>
+                <li><a class="nav-link" onclick="showSection('galeria', this)">Galería</a></li>
                 <li><a class="nav-link" onclick="showSection('contacto', this)">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <!-- SECCIÓN INICIO -->
         <section id="inicio" class="page-section active">
             <div class="hero">
                 <div class="hero-header">
@@ -848,12 +1022,16 @@
 
                 <div class="banner-container">
                     <img src="https://i.postimg.cc/bwjmY7JR/Chat-GPT-Image-9-sept-2026-02-12-43-p-m.png" alt="Banner Contacto Shalom" class="hero-banner" loading="lazy" decoding="async">
-                    <button class="banner-contact-btn" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[3])">
+                    <button class="banner-contact-btn" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[4])">
                         Contáctanos
                     </button>
                 </div>
 
-                <button class="btn-primary" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
+                <!-- ACCIONES RÁPIDAS EN INICIO -->
+                <div class="hero-actions">
+                    <button class="btn-primary" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
+                    <button class="btn-outline" onclick="showSection('galeria', document.querySelectorAll('.nav-link')[3])">Ver Galería de Fotos</button>
+                </div>
             </div>
         </section>
 
@@ -980,11 +1158,51 @@
             </div>
         </section>
 
+        <!-- SECCIÓN GALERÍA -->
+        <section id="galeria" class="page-section">
+            <h2 class="section-title">Nuestra Comunidad en Imágenes</h2>
+            
+            <!-- FILTROS DE CATEGORÍA -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" onclick="filterGallery('todos', this)">Todas</button>
+                <button class="filter-btn" onclick="filterGallery('reuniones', this)">Reuniones</button>
+                <button class="filter-btn" onclick="filterGallery('comunidad', this)">Comunidad</button>
+                <button class="filter-btn" onclick="filterGallery('eventos', this)">Eventos</button>
+            </div>
+
+            <!-- CUADRÍCULA DE FOTOS -->
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="reuniones" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/x8nFxBzw/Whats-App-Image-2026-09-09-at-1-59-39-PM-(2).jpg" alt="Reunión Comunitaria" loading="lazy" decoding="async">
+                    <div class="gallery-item-caption">Reunión de Adoración</div>
+                </div>
+                <div class="gallery-item" data-category="comunidad" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/t4wCVNKh/Chat-GPT-Image-9-sept-2026-02-19-18-p-m.png" alt="Logo e Identidad Shalom" loading="lazy" decoding="async">
+                    <div class="gallery-item-caption">Centro de Adoración Shalom</div>
+                </div>
+                <div class="gallery-item" data-category="eventos" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Horarios y Eventos" loading="lazy" decoding="async">
+                    <div class="gallery-item-caption">Actividades Especiales</div>
+                </div>
+                <div class="gallery-item" data-category="reuniones" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/pdHRwwTB/Chat-GPT-Image-10-sept-2026-12-08-53-a-m.png" alt="Congregación" loading="lazy" decoding="async">
+                    <div class="gallery-item-caption">Tiempos de Oración</div>
+                </div>
+                <div class="gallery-item" data-category="comunidad" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/pXy0vC1M/Chat-GPT-Image-10-sept-2026-01-06-58.png" alt="Contacto y Comunidad" loading="lazy" decoding="async">
+                    <div class="gallery-item-caption">Servicio a la Comunidad</div>
+                </div>
+                <div class="gallery-item" data-category="eventos" onclick="openLightbox(this)">
+                    <img src="https://i.postimg.cc/vBM8nc6n/Chat-GPT-Image-10-sept-2026-00-34-45.png" alt="Fe y Enseñanza" loading="lazy" decoding="async">
+                    <div class="gallery-item-caption">Enseñanza de la Palabra</div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECCIÓN CONTACTO -->
         <section id="contacto" class="page-section">
             <h2 class="section-title">Contacto</h2>
 
-            <!-- NUEVO BANNER INTEGRADO Y OPTIMIZADO -->
             <div class="banner-container">
                 <img 
                     src="https://i.postimg.cc/pXy0vC1M/Chat-GPT-Image-10-sept-2026-01-06-58.png" 
@@ -1048,6 +1266,13 @@
         </section>
     </main>
 
+    <!-- VISOR MODAL (LIGHTBOX) -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Imagen ampliada">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Centro de Adoración Shalom. Todos los derechos reservados.</p>
     </footer>
@@ -1080,6 +1305,39 @@
         function updateCharCount(textarea) {
             const counter = document.getElementById('charCounter');
             counter.textContent = `${textarea.value.length} / 1000 caracteres`;
+        }
+
+        // LÓGICA DE FILTRADO DE GALERÍA
+        function filterGallery(category, btnElement) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'todos' || item.getAttribute('data-category') === category) {
+                    item.classList.remove('hide');
+                } else {
+                    item.classList.add('hide');
+                }
+            });
+        }
+
+        // VISOR LIGHTBOX
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const caption = element.querySelector('.gallery-item-caption');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = caption ? caption.textContent : img.alt;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
         }
 
         document.getElementById('startBanner').addEventListener('click', function() {
