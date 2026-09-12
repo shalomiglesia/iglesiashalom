@@ -438,7 +438,8 @@
         .mini-card,
         .card,
         .side-verse-card,
-        .contact-box {
+        .contact-box,
+        .news-card {
             background: var(--accent-bg);
             border: 1px solid rgba(226, 232, 240, 0.8);
             border-radius: 14px;
@@ -450,7 +451,8 @@
         .mini-card:hover,
         .card:hover,
         .side-verse-card:hover,
-        .contact-box:hover {
+        .contact-box:hover,
+        .news-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 25px rgba(30, 58, 138, 0.08);
         }
@@ -546,6 +548,58 @@
             color: var(--brand-gold);
             font-weight: 600;
             font-size: 0.9rem;
+        }
+
+        /* --- ESTILOS SECCIÓN NOTICIAS --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .news-card {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--brand-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--brand-blue);
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .news-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            flex: 1;
         }
 
         .side-by-side-cards {
@@ -999,7 +1053,7 @@
                 border-radius: 10px;
             }
 
-            .hero-card-right, .card, .side-verse-card, .contact-box {
+            .hero-card-right, .card, .side-verse-card, .contact-box, .news-card {
                 padding: 1.2rem;
             }
 
@@ -1058,6 +1112,7 @@
                 <li><a class="nav-link active" onclick="showSection('inicio', this)">Inicio</a></li>
                 <li><a class="nav-link" onclick="showSection('nosotros', this)">Nosotros</a></li>
                 <li><a class="nav-link" onclick="showSection('reuniones', this)">Reuniones</a></li>
+                <li><a class="nav-link" onclick="showSection('noticias', this)">Noticias</a></li>
                 <li><a class="nav-link" onclick="showSection('galeria', this)">Galería</a></li>
                 <li><a class="nav-link" onclick="showSection('contacto', this)">Contacto</a></li>
             </ul>
@@ -1150,15 +1205,15 @@
 
                 <div class="banner-container">
                     <img src="https://i.postimg.cc/bwjmY7JR/Chat-GPT-Image-9-sept-2026-02-12-43-p-m.png" alt="Banner Contacto Shalom" class="hero-banner" loading="lazy" decoding="async">
-                    <button class="banner-contact-btn" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[4])">
+                    <button class="banner-contact-btn" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[5])">
                         Contáctanos
                     </button>
                 </div>
 
                 <!-- ACCIONES RÁPIDAS EN INICIO -->
                 <div class="hero-actions">
-                    <button class="btn-primary" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
-                    <button class="btn-outline" onclick="showSection('galeria', document.querySelectorAll('.nav-link')[3])">Ver Galería de Fotos</button>
+                    <button class="btn-primary" onclick="showSection('noticias', document.querySelectorAll('.nav-link')[3])">Últimas Noticias</button>
+                    <button class="btn-outline" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2])">Ver Horarios</button>
                 </div>
             </div>
         </section>
@@ -1281,6 +1336,46 @@
                     <div class="schedule-item">
                         <span class="schedule-title">Culto</span>
                         <span class="schedule-time">11:00 Horas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN NOTICIAS -->
+        <section id="noticias" class="page-section">
+            <h2 class="section-title">Noticias y Novedades</h2>
+            
+            <div class="news-grid">
+                <!-- NOTICIA 1 -->
+                <div class="news-card">
+                    <img src="https://i.postimg.cc/bJwttDH3/IMG-20260830-103834.jpg" alt="Visita Fundación JATCET" class="news-img" loading="lazy">
+                    <div class="news-body">
+                        <span class="news-date">30 de Agosto, 2026</span>
+                        <h3 class="news-title">Visita a la Fundación JATCET</h3>
+                        <p class="news-text">Compartimos una jornada bendecida junto a los miembros de la Fundación JATCET, llevando ayuda, fe y el mensaje de esperanza a quienes más lo necesitan.</p>
+                        <button class="btn-outline" style="align-self: flex-start; padding: 0.5rem 1.2rem; font-size: 0.85rem;" onclick="showSection('galeria', document.querySelectorAll('.nav-link')[4]); filterGallery('jatcet', document.querySelectorAll('.filter-btn')[2]);">Ver Fotos</button>
+                    </div>
+                </div>
+
+                <!-- NOTICIA 2 -->
+                <div class="news-card">
+                    <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Plataforma Digital" class="news-img" loading="lazy">
+                    <div class="news-body">
+                        <span class="news-date">10 de Septiembre, 2026</span>
+                        <h3 class="news-title">Lanzamiento de nuestra Plataforma Digital</h3>
+                        <p class="news-text">Seguimos trabajando para construir un nuevo espacio web accesible para todos, con el fin de mantener unida a nuestra comunidad dentro y fuera del templo.</p>
+                        <button class="btn-primary" style="align-self: flex-start; padding: 0.5rem 1.2rem; font-size: 0.85rem;" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[5]);">Unirme a la comunidad</button>
+                    </div>
+                </div>
+
+                <!-- NOTICIA 3 -->
+                <div class="news-card">
+                    <img src="https://i.postimg.cc/cL8Jn4NM/Whats-App-Image-2026-09-10-at-12-50-51-AM-(1).jpg" alt="Reuniones de Oración" class="news-img" loading="lazy">
+                    <div class="news-body">
+                        <span class="news-date">Próximamente</span>
+                        <h3 class="news-title">Nuevos Horarios de Oración por Zoom</h3>
+                        <p class="news-text">Te invitamos a conectarte en nuestros altares familiares virtuales los días Lunes, Miércoles y Viernes a las 20:00 hrs. ¡Fortalezcamos nuestra fe juntos!</p>
+                        <button class="btn-outline" style="align-self: flex-start; padding: 0.5rem 1.2rem; font-size: 0.85rem;" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[2]);">Ver Horarios</button>
                     </div>
                 </div>
             </div>
