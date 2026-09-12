@@ -632,7 +632,7 @@
             cursor: pointer;
         }
 
-        .carousel-slide img {
+        .carousel-slide img, .carousel-slide video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -745,7 +745,7 @@
             box-shadow: 0 8px 25px rgba(30, 58, 138, 0.15);
         }
 
-        .gallery-item img {
+        .gallery-item img, .gallery-item video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -753,7 +753,7 @@
             transition: transform 0.4s ease;
         }
 
-        .gallery-item:hover img {
+        .gallery-item:hover img, .gallery-item:hover video {
             transform: scale(1.05);
         }
 
@@ -1312,9 +1312,13 @@
                 </div>
             </div>
 
-            <!-- CUADRÍCULA DE FOTOS EXCLUSIVAS -->
+            <!-- CUADRÍCULA DE FOTOS Y VIDEOS EXCLUSIVAS -->
             <div class="gallery-grid">
                 <!-- CULTOS -->
+                <div class="gallery-item" data-category="cultos" onclick="openLightbox(this)">
+                    <video src="https://videotourl.com/videos/1789250419990-c35d159b-a4b8-4464-884c-1e6be22345ea.mp4" muted loop playsinline preload="metadata"></video>
+                    <div class="gallery-item-caption">Video de Culto</div>
+                </div>
                 <div class="gallery-item" data-category="cultos" onclick="openLightbox(this)">
                     <img src="https://i.postimg.cc/cL8Jn4NM/Whats-App-Image-2026-09-10-at-12-50-51-AM-(1).jpg" alt="Culto Shalom 1" loading="lazy" decoding="async">
                     <div class="gallery-item-caption">Culto de Adoración</div>
@@ -1424,7 +1428,7 @@
         <span class="lightbox-close">&times;</span>
         <button class="lightbox-btn prev" onclick="navigateLightbox(event, -1)">&#10094;</button>
         <button class="lightbox-btn next" onclick="navigateLightbox(event, 1)">&#10095;</button>
-        <img id="lightbox-img" class="lightbox-content" src="" alt="Imagen ampliada" onclick="event.stopPropagation()">
+        <div id="lightbox-media-container" style="display: flex; align-items: center; justify-content: center; max-width: 90%; max-height: 85vh;" onclick="event.stopPropagation()"></div>
         <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
@@ -1473,7 +1477,7 @@
             filterBtns.forEach(btn => btn.classList.remove('active'));
             if (btnElement) btnElement.classList.add('active');
 
-            // Filtrar cuadrícula de imágenes
+            // Filtrar cuadrícula de imágenes/videos
             const items = document.querySelectorAll('.gallery-item');
             items.forEach(item => {
                 if (category === 'todos' || item.getAttribute('data-category') === category) {
@@ -1512,19 +1516,30 @@
 
             activeCarouselItems.forEach((item, index) => {
                 const img = item.querySelector('img');
+                const vid = item.querySelector('video');
                 
                 // Diapositiva
                 const slide = document.createElement('div');
                 slide.className = 'carousel-slide';
                 slide.onclick = () => openLightboxFromIndex(index);
 
-                const slideImg = document.createElement('img');
-                slideImg.src = img.src;
-                slideImg.alt = img.alt;
-                slideImg.loading = 'lazy';
-                slideImg.decoding = 'async';
+                if (vid) {
+                    const slideVid = document.createElement('video');
+                    slideVid.src = vid.src;
+                    slideVid.autoplay = true;
+                    slideVid.muted = true;
+                    slideVid.loop = true;
+                    slideVid.playsInline = true;
+                    slide.appendChild(slideVid);
+                } else if (img) {
+                    const slideImg = document.createElement('img');
+                    slideImg.src = img.src;
+                    slideImg.alt = img.alt;
+                    slideImg.loading = 'lazy';
+                    slideImg.decoding = 'async';
+                    slide.appendChild(slideImg);
+                }
 
-                slide.appendChild(slideImg);
                 track.appendChild(slide);
 
                 // Viñeta (Dot)
@@ -1565,7 +1580,7 @@
             updateCarousel();
         }
 
-        // CONTROL DEL LIGHTBOX CON LISTA DE IMÁGENES VISIBLES
+        // CONTROL DEL LIGHTBOX CON LISTA DE ELEMENTOS VISIBLES
         let visibleGalleryItems = [];
         let currentLightboxIndex = 0;
 
@@ -1591,14 +1606,31 @@
             if (visibleGalleryItems.length === 0) return;
             const item = visibleGalleryItems[currentLightboxIndex];
             const img = item.querySelector('img');
+            const vid = item.querySelector('video');
             const caption = item.querySelector('.gallery-item-caption');
 
             const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
+            const mediaContainer = document.getElementById('lightbox-media-container');
             const lightboxCaption = document.getElementById('lightbox-caption');
 
-            lightboxImg.src = img.src;
-            lightboxCaption.textContent = caption ? caption.textContent : img.alt;
+            mediaContainer.innerHTML = '';
+
+            if (vid) {
+                const lightboxVid = document.createElement('video');
+                lightboxVid.className = 'lightbox-content';
+                lightboxVid.src = vid.src;
+                lightboxVid.controls = true;
+                lightboxVid.autoplay = true;
+                mediaContainer.appendChild(lightboxVid);
+            } else if (img) {
+                const lightboxImg = document.createElement('img');
+                lightboxImg.className = 'lightbox-content';
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                mediaContainer.appendChild(lightboxImg);
+            }
+
+            lightboxCaption.textContent = caption ? caption.textContent : '';
             lightbox.classList.add('active');
         }
 
@@ -1610,7 +1642,10 @@
         }
 
         function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            const mediaContainer = document.getElementById('lightbox-media-container');
+            if (mediaContainer) mediaContainer.innerHTML = '';
         }
 
         // EVENTO TECLADO GLOBAL (FLECHAS IZQUIERDA Y DERECHA + ESC)
