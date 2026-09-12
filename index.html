@@ -588,7 +588,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* --- SECCIÓN GALERÍA & CARRUSEL 9:16 --- */
+        /* --- SECCIÓN GALERÍA & CARRUSEL DINÁMICO 9:16 --- */
         .carousel-title {
             font-size: 1.3rem;
             font-weight: 800;
@@ -597,13 +597,14 @@
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: opacity 0.2s ease;
         }
 
         .carousel-container {
             position: relative;
             width: 100%;
             max-width: 380px;
-            margin: 0 auto 3rem auto;
+            margin: 0 auto 2rem auto;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
@@ -1289,36 +1290,26 @@
         <section id="galeria" class="page-section">
             <h2 class="section-title">Nuestra Comunidad en Imágenes</h2>
 
-            <!-- CARRUSEL 9:16 CULTOS -->
-            <h3 class="carousel-title">Cultos</h3>
-            <div class="carousel-container">
-                <div class="carousel-wrapper">
-                    <div class="carousel-track" id="carouselTrack">
-                        <div class="carousel-slide" onclick="openLightboxFromIndex(0)">
-                            <img src="https://i.postimg.cc/cL8Jn4NM/Whats-App-Image-2026-09-10-at-12-50-51-AM-(1).jpg" alt="Culto Shalom 1" loading="lazy" decoding="async">
-                        </div>
-                        <div class="carousel-slide" onclick="openLightboxFromIndex(1)">
-                            <img src="https://i.postimg.cc/Y0ZHrY0b/Whats-App-Image-2026-09-10-at-12-50-51-AM-(4).jpg" alt="Culto Shalom 2" loading="lazy" decoding="async">
-                        </div>
-                        <div class="carousel-slide" onclick="openLightboxFromIndex(2)">
-                            <img src="https://i.postimg.cc/1XLkhSY3/Whats-App-Image-2026-09-10-at-12-50-51-AM.jpg" alt="Culto Shalom 3" loading="lazy" decoding="async">
-                        </div>
-                    </div>
-                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
-                    <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
-                    <div class="carousel-dots" id="carouselDots">
-                        <span class="carousel-dot active" onclick="goToSlide(0)"></span>
-                        <span class="carousel-dot" onclick="goToSlide(1)"></span>
-                        <span class="carousel-dot" onclick="goToSlide(2)"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- FILTROS DE CATEGORÍA -->
+            <!-- FILTROS DE CATEGORÍA / ÁLBUMES -->
             <div class="gallery-filters">
                 <button class="filter-btn active" onclick="filterGallery('todos', this)">Todas</button>
                 <button class="filter-btn" onclick="filterGallery('cultos', this)">Cultos</button>
                 <button class="filter-btn" onclick="filterGallery('jatcet', this)">Visita Fundación JATCET</button>
+            </div>
+
+            <!-- CARRUSEL DINÁMICO SIMULTÁNEO 9:16 -->
+            <h3 class="carousel-title" id="carouselTitle">Todas las Imágenes</h3>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Carga dinámica mediante JS -->
+                    </div>
+                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+                    <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+                    <div class="carousel-dots" id="carouselDots">
+                        <!-- Carga dinámica mediante JS -->
+                    </div>
+                </div>
             </div>
 
             <!-- CUADRÍCULA DE FOTOS EXCLUSIVAS -->
@@ -1442,12 +1433,14 @@
     </footer>
 
     <script>
-        // CONTROL DE PRELOADER RÁPIDO
+        // CONTROL DE PRELOADER RÁPIDO Y CARGA INICIAL DEL CARRUSEL
         window.addEventListener('DOMContentLoaded', () => {
             const loader = document.getElementById('page-loader');
             if (loader) {
                 loader.classList.add('hidden');
             }
+            // Sincroniza el carrusel inicial con "Todas" las imágenes
+            updateCarouselImages('todos');
         });
 
         // NAVEGACIÓN INSTANTÁNEA
@@ -1471,9 +1464,78 @@
             counter.textContent = `${textarea.value.length} / 1000 caracteres`;
         }
 
-        // LÓGICA DEL CARRUSEL (9:16)
+        // CONTROL DE ÁLBUMES Y SINCRONIZACIÓN SIMULTÁNEA CON CARRUSEL
         let currentSlide = 0;
-        const totalSlides = 3;
+        let activeCarouselItems = [];
+
+        function filterGallery(category, btnElement) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+
+            // Filtrar cuadrícula de imágenes
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'todos' || item.getAttribute('data-category') === category) {
+                    item.classList.remove('hide');
+                } else {
+                    item.classList.add('hide');
+                }
+            });
+
+            // Actualizar título del carrusel dinámicamente
+            const carouselTitle = document.getElementById('carouselTitle');
+            if (category === 'cultos') {
+                carouselTitle.textContent = 'Álbum: Cultos';
+            } else if (category === 'jatcet') {
+                carouselTitle.textContent = 'Álbum: Visita Fundación JATCET';
+            } else {
+                carouselTitle.textContent = 'Todas las Imágenes';
+            }
+
+            // Sincronizar simultáneamente las imágenes del carrusel
+            updateCarouselImages(category);
+        }
+
+        function updateCarouselImages(category) {
+            const track = document.getElementById('carouselTrack');
+            const dotsContainer = document.getElementById('carouselDots');
+            
+            const allGalleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+            activeCarouselItems = allGalleryItems.filter(item => {
+                return category === 'todos' || item.getAttribute('data-category') === category;
+            });
+
+            track.innerHTML = '';
+            dotsContainer.innerHTML = '';
+            currentSlide = 0;
+
+            activeCarouselItems.forEach((item, index) => {
+                const img = item.querySelector('img');
+                
+                // Diapositiva
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.onclick = () => openLightboxFromIndex(index);
+
+                const slideImg = document.createElement('img');
+                slideImg.src = img.src;
+                slideImg.alt = img.alt;
+                slideImg.loading = 'lazy';
+                slideImg.decoding = 'async';
+
+                slide.appendChild(slideImg);
+                track.appendChild(slide);
+
+                // Viñeta (Dot)
+                const dot = document.createElement('span');
+                dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+                dot.onclick = () => goToSlide(index);
+                dotsContainer.appendChild(dot);
+            });
+
+            updateCarousel();
+        }
 
         function updateCarousel() {
             const track = document.getElementById('carouselTrack');
@@ -1493,29 +1555,14 @@
         }
 
         function moveCarousel(direction) {
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            if (activeCarouselItems.length === 0) return;
+            currentSlide = (currentSlide + direction + activeCarouselItems.length) % activeCarouselItems.length;
             updateCarousel();
         }
 
         function goToSlide(slideIndex) {
             currentSlide = slideIndex;
             updateCarousel();
-        }
-
-        // LÓGICA DE FILTRADO DE GALERÍA
-        function filterGallery(category, btnElement) {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            filterBtns.forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-
-            const items = document.querySelectorAll('.gallery-item');
-            items.forEach(item => {
-                if (category === 'todos' || item.getAttribute('data-category') === category) {
-                    item.classList.remove('hide');
-                } else {
-                    item.classList.add('hide');
-                }
-            });
         }
 
         // CONTROL DEL LIGHTBOX CON LISTA DE IMÁGENES VISIBLES
@@ -1571,7 +1618,6 @@
             const lightbox = document.getElementById('lightbox');
             const isLightboxActive = lightbox && lightbox.classList.contains('active');
 
-            // Si se está escribiendo en el formulario de contacto, no interferir con las flechas
             if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
                 return;
             }
