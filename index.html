@@ -597,6 +597,21 @@
             margin-bottom: 1.5rem;
         }
 
+        /* --- ESTILOS SECCIÓN NOTICIAS MODIFICADA --- */
+        .noticias-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            align-items: start;
+            margin-bottom: 1.8rem;
+        }
+
+        .noticias-cards-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
         /* --- SECCIÓN GALERÍA & CARRUSELES DINÁMICOS --- */
         .carousel-title {
             font-size: 1.3rem;
@@ -1012,6 +1027,7 @@
             nav a { font-size: 0.85rem; padding: 4px 6px; }
             main { padding: 1rem 3%; }
             .hero-three-columns { grid-template-columns: 1fr; gap: 1.2rem; }
+            .noticias-grid-layout { grid-template-columns: 1fr; }
             .banner-container { height: 200px; border-radius: 12px; }
             .carousel-container { max-width: 100%; border-radius: 12px; }
             .hero-card-right, .card, .side-verse-card, .contact-box { padding: 1.4rem; }
@@ -1180,8 +1196,8 @@
         <section id="noticias" class="page-section">
             <h2 class="section-title">Noticias</h2>
 
-            <!-- FILA SUPERIOR: Carrusel a la izquierda + Recuadro "Misión en India" a la derecha -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.8rem; align-items: stretch; margin-bottom: 1.8rem;">
+            <!-- ESTRUCTURA PRINCIPAL DE NOTICIAS: CARRUSEL IZQUIERDA | 3 RECUADROS COLUMNA DERECHA -->
+            <div class="noticias-grid-layout">
                 <div>
                     <h3 class="carousel-title" style="text-align: left;">Misioneros por la India</h3>
                     <div class="carousel-container" id="noticiasContainer" tabindex="0" aria-label="Carrusel Misioneros por la India" style="margin: 0; max-width: 100%;">
@@ -1216,31 +1232,31 @@
                     </div>
                 </div>
 
-                <div class="hero-card-right" style="display: flex; flex-direction: column; justify-content: center;">
-                    <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Misión en India</h3>
-                    <h4 style="font-size: 0.9rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Llevando el Evangelio</h4>
-                    <p style="font-size: 0.95rem; color: var(--text-color); margin: 0;">
-                        Como Centro de Adoración Shalom, creemos que la adoración también se expresa saliendo al encuentro de quienes necesitan conocer a Jesucristo. Nuestra misión busca llevar el mensaje del Evangelio y la esperanza de Dios a comunidades de India.
-                    </p>
-                </div>
-            </div>
+                <!-- COLUMNA VERTICAL DERECHA -->
+                <div class="noticias-cards-column">
+                    <div class="hero-card-right">
+                        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Misión en India</h3>
+                        <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 0.8rem; text-transform: uppercase;">Llevando el Evangelio</h4>
+                        <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
+                            Como Centro de Adoración Shalom, creemos que la adoración también se expresa saliendo al encuentro de quienes necesitan conocer a Jesucristo. Nuestra misión busca llevar el mensaje del Evangelio y la esperanza de Dios a comunidades de India.
+                        </p>
+                    </div>
 
-            <!-- FILA INTERMEDIA: Niños y familias (izquierda) + Ayuda social (derecha) -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; margin-bottom: 1.8rem;">
-                <div class="hero-card-right">
-                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Niños y familias</h3>
-                    <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 0.8rem; text-transform: uppercase;">Sembrando esperanza</h4>
-                    <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
-                        Diversas misiones cristianas desarrollan programas destinados a niños y familias vulnerables, integrando educación, alimentación, protección y acompañamiento espiritual como expresiones concretas del amor cristiano.
-                    </p>
-                </div>
+                    <div class="hero-card-right">
+                        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Niños y familias</h3>
+                        <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 0.8rem; text-transform: uppercase;">Sembrando esperanza</h4>
+                        <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
+                            Diversas misiones cristianas desarrollan programas destinados a niños y familias vulnerables, integrando educación, alimentación, protección y acompañamiento espiritual como expresiones concretas del amor cristiano.
+                        </p>
+                    </div>
 
-                <div class="hero-card-right">
-                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Ayuda social</h3>
-                    <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 0.8rem; text-transform: uppercase;">Fe que se convierte en acción</h4>
-                    <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
-                        La misión cristiana también responde a necesidades concretas: atención médica, alimentación, educación, apoyo a familias vulnerables y asistencia en situaciones de emergencia. Servir al prójimo es una expresión práctica de la fe.
-                    </p>
+                    <div class="hero-card-right">
+                        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Ayuda social</h3>
+                        <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 0.8rem; text-transform: uppercase;">Fe que se convierte en acción</h4>
+                        <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
+                            La misión cristiana también responde a necesidades concretas: atención médica, alimentación, educación, apoyo a familias vulnerables y asistencia en situaciones de emergencia. Servir al prójimo es una expresión práctica de la fe.
+                        </p>
+                    </div>
                 </div>
             </div>
 
