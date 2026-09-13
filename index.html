@@ -1180,37 +1180,77 @@
         <section id="noticias" class="page-section">
             <h2 class="section-title">Noticias</h2>
 
-            <h3 class="carousel-title">Misioneros por la India</h3>
-            
-            <div class="carousel-container" id="noticiasContainer" tabindex="0" aria-label="Carrusel Misioneros por la India">
-                <div class="carousel-wrapper">
-                    <div class="carousel-track" id="noticiasTrack">
-                        <div class="carousel-slide" onclick="openLightboxDirect('https://i.postimg.cc/SKR46hR8/Whats-App-Image-2026-09-12-at-11-44-46-PM-(1).jpg', 'Portada: Misioneros por la India')">
-                            <img src="https://i.postimg.cc/SKR46hR8/Whats-App-Image-2026-09-12-at-11-44-46-PM-(1).jpg" alt="Portada Misioneros por la India">
+            <!-- FILA SUPERIOR: Carrusel a la izquierda + Recuadro "Misión en India" a la derecha -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.8rem; align-items: stretch; margin-bottom: 1.8rem;">
+                <div>
+                    <h3 class="carousel-title" style="text-align: left;">Misioneros por la India</h3>
+                    <div class="carousel-container" id="noticiasContainer" tabindex="0" aria-label="Carrusel Misioneros por la India" style="margin: 0; max-width: 100%;">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" id="noticiasTrack">
+                                <div class="carousel-slide" onclick="openNoticiasLightboxDirect(0)">
+                                    <img src="https://i.postimg.cc/SKR46hR8/Whats-App-Image-2026-09-12-at-11-44-46-PM-(1).jpg" alt="Portada Misioneros por la India">
+                                </div>
+                                <div class="carousel-slide" onclick="openNoticiasLightboxDirect(1)">
+                                    <img src="https://i.postimg.cc/qqL2HyrH/IMG-7586.jpg" alt="Misioneros por la India 1">
+                                </div>
+                                <div class="carousel-slide" onclick="openNoticiasLightboxDirect(2)">
+                                    <img src="https://i.postimg.cc/6QpWMZjH/IMG-7587.jpg" alt="Misioneros por la India 2">
+                                </div>
+                                <div class="carousel-slide" onclick="openNoticiasLightboxDirect(3)">
+                                    <img src="https://i.postimg.cc/Y2WpDMRB/IMG-7590-JPG.jpg" alt="Misioneros por la India 3">
+                                </div>
+                                <div class="carousel-slide" onclick="openNoticiasLightboxDirect(4)">
+                                    <img src="https://i.postimg.cc/CLCwY794/IMG-7592-JPG.jpg" alt="Misioneros por la India 4">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveNoticiasCarousel(-1)" aria-label="Anterior">&#10094;</button>
+                            <button class="carousel-btn next" onclick="moveNoticiasCarousel(1)" aria-label="Siguiente">&#10095;</button>
+                            <div class="carousel-dots" id="noticiasDots">
+                                <span class="carousel-dot active" onclick="goToNoticiasSlide(0)"></span>
+                                <span class="carousel-dot" onclick="goToNoticiasSlide(1)"></span>
+                                <span class="carousel-dot" onclick="goToNoticiasSlide(2)"></span>
+                                <span class="carousel-dot" onclick="goToNoticiasSlide(3)"></span>
+                                <span class="carousel-dot" onclick="goToNoticiasSlide(4)"></span>
+                            </div>
                         </div>
-                        <div class="carousel-slide" onclick="openLightboxDirect('https://i.postimg.cc/qqL2HyrH/IMG-7586.jpg', 'Misioneros por la India 1')">
-                            <img src="https://i.postimg.cc/qqL2HyrH/IMG-7586.jpg" alt="Misioneros por la India 1">
-                        </div>
-                        <div class="carousel-slide" onclick="openLightboxDirect('https://i.postimg.cc/6QpWMZjH/IMG-7587.jpg', 'Misioneros por la India 2')">
-                            <img src="https://i.postimg.cc/6QpWMZjH/IMG-7587.jpg" alt="Misioneros por la India 2">
-                        </div>
-                        <div class="carousel-slide" onclick="openLightboxDirect('https://i.postimg.cc/Y2WpDMRB/IMG-7590-JPG.jpg', 'Misioneros por la India 3')">
-                            <img src="https://i.postimg.cc/Y2WpDMRB/IMG-7590-JPG.jpg" alt="Misioneros por la India 3">
-                        </div>
-                        <div class="carousel-slide" onclick="openLightboxDirect('https://i.postimg.cc/CLCwY794/IMG-7592-JPG.jpg', 'Misioneros por la India 4')">
-                            <img src="https://i.postimg.cc/CLCwY794/IMG-7592-JPG.jpg" alt="Misioneros por la India 4">
-                        </div>
-                    </div>
-                    <button class="carousel-btn prev" onclick="moveNoticiasCarousel(-1)" aria-label="Anterior">&#10094;</button>
-                    <button class="carousel-btn next" onclick="moveNoticiasCarousel(1)" aria-label="Siguiente">&#10095;</button>
-                    <div class="carousel-dots" id="noticiasDots">
-                        <span class="carousel-dot active" onclick="goToNoticiasSlide(0)"></span>
-                        <span class="carousel-dot" onclick="goToNoticiasSlide(1)"></span>
-                        <span class="carousel-dot" onclick="goToNoticiasSlide(2)"></span>
-                        <span class="carousel-dot" onclick="goToNoticiasSlide(3)"></span>
-                        <span class="carousel-dot" onclick="goToNoticiasSlide(4)"></span>
                     </div>
                 </div>
+
+                <div class="hero-card-right" style="display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Misión en India</h3>
+                    <h4 style="font-size: 0.9rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Llevando el Evangelio</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-color); margin: 0;">
+                        Como Centro de Adoración Shalom, creemos que la adoración también se expresa saliendo al encuentro de quienes necesitan conocer a Jesucristo. Nuestra misión busca llevar el mensaje del Evangelio y la esperanza de Dios a comunidades de India.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FILA INTERMEDIA: Niños y familias (izquierda) + Ayuda social (derecha) -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; margin-bottom: 1.8rem;">
+                <div class="hero-card-right">
+                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Niños y familias</h3>
+                    <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 0.8rem; text-transform: uppercase;">Sembrando esperanza</h4>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
+                        Diversas misiones cristianas desarrollan programas destinados a niños y familias vulnerables, integrando educación, alimentación, protección y acompañamiento espiritual como expresiones concretas del amor cristiano.
+                    </p>
+                </div>
+
+                <div class="hero-card-right">
+                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Ayuda social</h3>
+                    <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 0.8rem; text-transform: uppercase;">Fe que se convierte en acción</h4>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
+                        La misión cristiana también responde a necesidades concretas: atención médica, alimentación, educación, apoyo a familias vulnerables y asistencia en situaciones de emergencia. Servir al prójimo es una expresión práctica de la fe.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FILA INFERIOR: Iglesias locales (Ancho completo) -->
+            <div class="hero-card-right" style="width: 100%;">
+                <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--brand-blue); margin-bottom: 0.2rem;">Iglesias locales</h3>
+                <h4 style="font-size: 0.85rem; font-weight: 600; color: var(--brand-gold); margin-bottom: 0.8rem; text-transform: uppercase;">Una iglesia que permanece</h4>
+                <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
+                    El propósito de la misión no es solamente realizar actividades puntuales, sino fortalecer comunidades cristianas locales capaces de crecer, discipular y continuar anunciando el Evangelio en su propio contexto.
+                </p>
             </div>
         </section>
 
@@ -1652,7 +1692,7 @@
             updateCarousel();
         }
 
-        // LIGHTBOX
+        // LIGHTBOX / VISOR DE IMÁGENES
         let visibleGalleryItems = [];
         let currentLightboxIndex = 0;
         let isDirectLightbox = false;
@@ -1677,6 +1717,31 @@
             document.getElementById('lightboxPrev').style.display = 'flex';
             document.getElementById('lightboxNext').style.display = 'flex';
             updateVisibleGalleryItems();
+            currentLightboxIndex = index;
+            showLightboxImage();
+        }
+
+        // VISOR PARA LAS IMÁGENES DE NOTICIAS CON NAVEGACIÓN COMPLETA
+        const noticiasImages = [
+            { url: 'https://i.postimg.cc/SKR46hR8/Whats-App-Image-2026-09-12-at-11-44-46-PM-(1).jpg', caption: 'Portada: Misioneros por la India' },
+            { url: 'https://i.postimg.cc/qqL2HyrH/IMG-7586.jpg', caption: 'Misioneros por la India 1' },
+            { url: 'https://i.postimg.cc/6QpWMZjH/IMG-7587.jpg', caption: 'Misioneros por la India 2' },
+            { url: 'https://i.postimg.cc/Y2WpDMRB/IMG-7590-JPG.jpg', caption: 'Misioneros por la India 3' },
+            { url: 'https://i.postimg.cc/CLCwY794/IMG-7592-JPG.jpg', caption: 'Misioneros por la India 4' }
+        ];
+
+        function openNoticiasLightboxDirect(index) {
+            isDirectLightbox = false;
+            document.getElementById('lightboxPrev').style.display = 'flex';
+            document.getElementById('lightboxNext').style.display = 'flex';
+            
+            visibleGalleryItems = noticiasImages.map(item => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = `<img src="${item.url}" alt="${item.caption}"><div class="gallery-item-caption">${item.caption}</div>`;
+                return div;
+            });
+            
             currentLightboxIndex = index;
             showLightboxImage();
         }
@@ -1748,7 +1813,6 @@
 
         // CONTROLADOR GLOBAL DE TECLADO (FLECHAS IZQ/DER Y ESCAPE)
         document.addEventListener('keydown', function(e) {
-            // No intervenir si el usuario está escribiendo en campos de formulario
             if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
 
             const lightbox = document.getElementById('lightbox');
