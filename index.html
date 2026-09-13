@@ -413,6 +413,15 @@
             line-height: 1.25;
         }
 
+        .sub-heading-world {
+            font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+            font-weight: 700;
+            color: var(--brand-gold);
+            margin: 1.5rem 0 1rem 0;
+            text-align: center;
+            width: 100%;
+        }
+
         .hero-image-center {
             background-color: #0f172a;
             border-radius: 14px;
@@ -1087,18 +1096,6 @@
                     </a>
                 </div>
 
-                <!-- BANNER CONECTOR A SECCIÓN NOTICIAS -->
-                <div class="banner-container-hero">
-                    <img 
-                        src="https://i.postimg.cc/yNxKmHx2/Chat-GPT-Image-13-sept-2026-12-02-09-a-m.png" 
-                        alt="Misioneros por la India - Ir a Noticias" 
-                        class="hero-banner" 
-                        onclick="showSection('noticias', document.querySelectorAll('.nav-link')[1])"
-                        fetchpriority="high" 
-                        decoding="async"
-                    >
-                </div>
-
                 <div class="hero-content-grid">
                     <div class="hero-title-left">
                         <h2>Estamos preparando un lugar para encontrarnos</h2>
@@ -1128,6 +1125,20 @@
                         <p>Cuando buscamos al que está lejos.</p>
                         <p class="highlight-text">Una iglesia viva no solamente se reúne. También es enviada.</p>
                     </div>
+                </div>
+
+                <!-- NUEVA UBICACIÓN: TÍTULO Y BANNER MISIONEROS POR LA INDIA -->
+                <h2 class="sub-heading-world">Acompáñanos por el mundo</h2>
+                
+                <div class="banner-container-hero">
+                    <img 
+                        src="https://i.postimg.cc/yNxKmHx2/Chat-GPT-Image-13-sept-2026-12-02-09-a-m.png" 
+                        alt="Misioneros por la India - Ir a Noticias" 
+                        class="hero-banner" 
+                        onclick="showSection('noticias', document.querySelectorAll('.nav-link')[1])"
+                        fetchpriority="high" 
+                        decoding="async"
+                    >
                 </div>
 
                 <div class="mini-cards-grid">
