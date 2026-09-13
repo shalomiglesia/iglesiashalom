@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>SHALOM — Centro de Adoración</title>
+    <title id="dynamic-title">SHALOM — Centro de Adoración</title>
     
     <!-- META ETIQUETAS SEO Y REDES SOCIALES (OPEN GRAPH / TWITTER) -->
     <meta name="description" content="Bienvenido al Centro de Adoración Shalom. Un lugar para conectar, adorar y crecer juntos en la fe.">
@@ -40,6 +40,8 @@
             --brand-blue: #1e3a8a;
             --brand-gold: #d97706;
             --brand-gold-hover: #b45309;
+            --whatsapp-color: #25d366;
+            --whatsapp-hover: #1da851;
             --font-main: 'Montserrat', sans-serif;
         }
 
@@ -59,6 +61,10 @@
             flex-direction: column;
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
         }
 
         /* --- PRELOADER ULTRA-RÁPIDO --- */
@@ -281,6 +287,19 @@
 
         .banner-container-hero:hover .hero-banner { transform: scale(1.015); }
 
+        .hero-cta-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 90%;
+        }
+
         .banner-container {
             width: 100%;
             max-width: 1100px;
@@ -408,10 +427,60 @@
             cursor: pointer;
             font-size: 0.95rem;
             transition: background-color 0.25s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .btn-primary:hover { 
             background-color: var(--brand-gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-gold {
+            background-color: var(--brand-gold);
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background-color 0.25s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+        }
+
+        .btn-gold:hover {
+            background-color: var(--brand-gold-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp-color);
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background-color 0.25s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--whatsapp-hover);
             transform: translateY(-2px);
         }
 
@@ -425,6 +494,10 @@
             cursor: pointer;
             font-size: 0.95rem;
             transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-outline:hover {
@@ -851,6 +924,39 @@
             opacity: 1;
         }
 
+        /* MEDIA & SERMONS */
+        .sermon-responsive-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+        .sermon-responsive-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* DONACIONES */
+        .bank-details {
+            background-color: var(--primary-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px dashed rgba(217, 119, 6, 0.5);
+        }
+
+        .bank-details p {
+            font-size: 0.88rem;
+            color: var(--text-color);
+            margin-bottom: 0.3rem;
+        }
+
         /* LIGHTBOX / VISOR MODAL CON BOTONES DE NAVEGACIÓN */
         .lightbox {
             position: fixed;
@@ -933,6 +1039,49 @@
             font-weight: 600;
             text-align: center;
             width: 90%;
+        }
+
+        /* MODAL GENERAL (ZOOM / ORACIÓN) */
+        .custom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.8);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 1rem;
+        }
+
+        .custom-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-body-card {
+            background: var(--accent-bg);
+            border-radius: 14px;
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
         }
 
         /* CONTACTO */
@@ -1018,6 +1167,16 @@
             background-color: var(--primary-bg);
             font-size: 0.9rem;
             color: var(--text-color);
+        }
+
+        .info-value-box a {
+            color: var(--brand-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .info-value-box a:hover {
+            text-decoration: underline;
         }
 
         .map-container {
@@ -1129,7 +1288,7 @@
             .banner-instagram-btn.right { right: 10px; }
             .banner-contact-btn { bottom: 10px; right: 10px; padding: 0.4rem 0.8rem; font-size: 0.75rem; }
             .gallery-grid { grid-template-columns: 1fr; }
-            .btn-primary, .btn-outline { width: 100%; padding: 0.8rem 1rem; }
+            .btn-primary, .btn-outline, .btn-gold, .btn-whatsapp { width: 100%; padding: 0.8rem 1rem; }
         }
     </style>
 </head>
@@ -1163,6 +1322,8 @@
                 <li><a class="nav-link" onclick="showSection('nosotros', this)">Nosotros</a></li>
                 <li><a class="nav-link" onclick="showSection('reuniones', this)">Reuniones</a></li>
                 <li><a class="nav-link" onclick="showSection('galeria', this)">Galería</a></li>
+                <li><a class="nav-link" onclick="showSection('transmisiones', this)">Sermones</a></li>
+                <li><a class="nav-link" onclick="showSection('donaciones', this)">Ofrendas</a></li>
                 <li><a class="nav-link" onclick="showSection('contacto', this)">Contacto</a></li>
             </ul>
         </nav>
@@ -1180,6 +1341,12 @@
                 <div class="banner-container-hero">
                     <img src="https://i.postimg.cc/MK4k3QMV/Chat-GPT-Image-9-sept-2026-10-45-21-a-m.png" alt="Banner Shalom - Horarios de Reuniones" class="hero-banner" id="startBanner" fetchpriority="high" decoding="async">
                     
+                    <!-- CTA PRINCIPAL SOBREPUESTO -->
+                    <div class="hero-cta-overlay">
+                        <button class="btn-gold" onclick="showSection('reuniones', document.querySelectorAll('.nav-link')[3])"> Unirme a un Culto</button>
+                        <button class="btn-primary" onclick="openZoomModal()"> Solicitud Link Zoom</button>
+                    </div>
+
                     <a href="https://www.instagram.com/simientedelavid?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="banner-instagram-btn left" title="Simiente de la Vida">
                         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         <span class="btn-text">Simiente de la Vida</span>
@@ -1265,9 +1432,20 @@
                     </div>
                 </div>
 
+                <!-- SECCIÓN PETICIÓN DE ORACIÓN RÁPIDA -->
+                <div class="hero-card-right" style="width: 100%; margin-bottom: 2rem; background: linear-gradient(135deg, #ffffff, #f1f5f9); border: 1px solid var(--brand-gold);">
+                    <h3 style="color: var(--brand-blue); margin-bottom: 0.5rem; font-size: 1.3rem;">¿Necesitas Oración?</h3>
+                    <p>Déjanos tu motivo de oración y nuestro equipo estará intercediendo por ti de manera confidencial.</p>
+                    <form action="https://formsubmit.co/contacto@centroadoracionshalom.cl" method="POST" style="margin-top: 1rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                        <input type="hidden" name="_subject" value="Nueva Petición de Oración">
+                        <input type="text" name="Petición" class="form-input" placeholder="Escribe tu motivo de oración aquí..." style="flex: 1; min-width: 250px;" required>
+                        <button type="submit" class="btn-gold">Enviar Petición</button>
+                    </form>
+                </div>
+
                 <div class="banner-container">
                     <img src="https://i.postimg.cc/bwjmY7JR/Chat-GPT-Image-9-sept-2026-02-12-43-p-m.png" alt="Banner Contacto Shalom" class="hero-banner" loading="lazy" decoding="async">
-                    <button class="banner-contact-btn" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[5])">
+                    <button class="banner-contact-btn" onclick="showSection('contacto', document.querySelectorAll('.nav-link')[7])">
                         Contáctanos
                     </button>
                 </div>
@@ -1422,6 +1600,10 @@
 
             <h2 class="section-title">Nuestras Reuniones</h2>
 
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <button class="btn-primary" onclick="openZoomModal()"> Solicitud de Link para Reuniones Zoom</button>
+            </div>
+
             <div class="grid-cards">
                 <div class="card">
                     <h3>Lunes</h3>
@@ -1560,6 +1742,49 @@
             </div>
         </section>
 
+        <!-- SECCIÓN TRANSMISIONES & SERMONES -->
+        <section id="transmisiones" class="page-section">
+            <h2 class="section-title">Sermones y Mensajes</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">Accede a nuestras predicaciones y mensajes de edificación para tu vida.</p>
+            
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Último Mensaje</h3>
+                    <p>Revive nuestro culto general de enseñanza y adoración.</p>
+                    <div class="sermon-responsive-container">
+                        <iframe src="https://www.youtube.com/embed/videoseries?list=PL" title="Reproductor de Youtube Shalom" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Audios y Podcast</h3>
+                    <p>Escucha reflexiones bíblicas y prédicas semanales en movimiento.</p>
+                    <div style="margin-top: 1.5rem; text-align: center;">
+                        <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background-color: #1ed760; color: #121212;">Escuchar en Spotify</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DONACIONES -->
+        <section id="donaciones" class="page-section">
+            <h2 class="section-title">Ofrendas y Diezmos</h2>
+            <div class="hero-card-right" style="max-width: 700px; margin: 0 auto;">
+                <p style="text-align: center;">«Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre.»</p>
+                <p class="verse" style="text-align: center;">2 Corintios 9:7</p>
+                
+                <h3 style="color: var(--brand-blue); margin-top: 1.5rem; font-size: 1.1rem;">Datos Transferencia Bancaria</h3>
+                <div class="bank-details">
+                    <p><strong>Banco:</strong> Banco de Chile</p>
+                    <p><strong>Tipo de Cuenta:</strong> Cuenta Corriente</p>
+                    <p><strong>Número de Cuenta:</strong> 123-45678-90</p>
+                    <p><strong>Rut:</strong> 65.123.456-7</p>
+                    <p><strong>Nombre:</strong> Centro de Adoración Shalom</p>
+                    <p><strong>Correo:</strong> contacto@centroadoracionshalom.cl</p>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; text-align: center;">Tus aportes permiten sostener los cultos, la ayuda social y el trabajo misionero en la India.</p>
+            </div>
+        </section>
+
         <!-- SECCIÓN CONTACTO -->
         <section id="contacto" class="page-section">
             <h2 class="section-title">Contacto</h2>
@@ -1577,22 +1802,25 @@
             <div class="contact-container">
                 <div class="contact-box">
                     <h3>Escríbenos</h3>
-                    <form id="contactForm" onsubmit="event.preventDefault();">
+                    <!-- INTEGRACIÓN CON FORMSUBMIT PARA ENVÍO REAL DE MAILS -->
+                    <form id="contactForm" action="https://formsubmit.co/contacto@centroadoracionshalom.cl" method="POST">
+                        <input type="hidden" name="_subject" value="Nuevo Mensaje - Web Shalom">
+                        <input type="hidden" name="_next" value="https://centroadoracionshalom.cl">
                         <div class="form-group">
                             <label for="inputNombre">Nombre</label>
-                            <input type="text" id="inputNombre" class="form-input" placeholder="Tu nombre">
+                            <input type="text" id="inputNombre" name="Nombre" class="form-input" placeholder="Tu nombre" required>
                         </div>
                         <div class="form-group">
                             <label for="inputCorreo">Correo</label>
-                            <input type="email" id="inputCorreo" class="form-input" placeholder="tu@correo.com">
+                            <input type="email" id="inputCorreo" name="Correo" class="form-input" placeholder="tu@correo.com" required>
                         </div>
                         <div class="form-group">
                             <label for="inputNumero">Número</label>
-                            <input type="tel" id="inputNumero" class="form-input" placeholder="+56 9 ...">
+                            <input type="tel" id="inputNumero" name="Telefono" class="form-input" placeholder="+56 9 ...">
                         </div>
                         <div class="form-group">
                             <label for="inputMensaje">Mensaje</label>
-                            <textarea id="inputMensaje" class="form-input" maxlength="1000" placeholder="Escribe tu mensaje aquí..." oninput="updateCharCount(this)"></textarea>
+                            <textarea id="inputMensaje" name="Mensaje" class="form-input" maxlength="1000" placeholder="Escribe tu mensaje aquí..." oninput="updateCharCount(this)" required></textarea>
                             <div class="char-counter" id="charCounter">0 / 1000 caracteres</div>
                         </div>
                         <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">Enviar Mensaje</button>
@@ -1606,12 +1834,22 @@
                         <div class="info-value-box">Del Ferrocarril 1538, Maipú</div>
                     </div>
                     <div class="info-item">
-                        <label>Correo</label>
-                        <div class="info-value-box">(pronta inserción)</div>
+                        <label>Correo Electrónico</label>
+                        <div class="info-value-box">
+                            <a href="mailto:contacto@centroadoracionshalom.cl">contacto@centroadoracionshalom.cl</a>
+                        </div>
                     </div>
                     <div class="info-item">
-                        <label>Número</label>
-                        <div class="info-value-box">(pronta inserción)</div>
+                        <label>Teléfono de Contacto</label>
+                        <div class="info-value-box">
+                            <a href="tel:+56912345678">+56 9 1234 5678</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <label>Atención Rápida por WhatsApp</label>
+                        <a href="https://wa.me/56912345678?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20el%20Centro%20de%20Adoración%20Shalom" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" style="width: 100%; margin-top: 0.3rem;">
+                            Escribir al WhatsApp
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1636,6 +1874,27 @@
         <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
+    <!-- MODAL SOLICITUD DE ZOOM -->
+    <div id="zoomModal" class="custom-modal" onclick="closeZoomModal()">
+        <div class="modal-body-card" onclick="event.stopPropagation()">
+            <span class="modal-close-btn" onclick="closeZoomModal()">&times;</span>
+            <h3 style="color: var(--brand-blue); margin-bottom: 0.5rem;">Unirse a Reunión Zoom</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Solicita el enlace de acceso directo para nuestras reuniones virtuales de oración y discipulado.</p>
+            <form action="https://formsubmit.co/contacto@centroadoracionshalom.cl" method="POST">
+                <input type="hidden" name="_subject" value="Solicitud de Enlace Zoom">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" name="Nombre" class="form-input" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp o Correo</label>
+                    <input type="text" name="Contacto" class="form-input" required placeholder="Para enviarte el enlace">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">Solicitar Link de Acceso</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Centro de Adoración Shalom. Todos los derechos reservados.</p>
     </footer>
@@ -1658,6 +1917,7 @@
                 menuToggle.addEventListener('click', () => {
                     menuToggle.classList.toggle('open');
                     navMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open', navMenu.classList.contains('active'));
                 });
             }
         }
@@ -1674,12 +1934,17 @@
 
             if (element) element.classList.add('active');
 
+            // ACTUALIZACIÓN DINÁMICA DEL TÍTULO SEO
+            const sectionNameFormatted = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+            document.getElementById('dynamic-title').innerText = `SHALOM — ${sectionNameFormatted}`;
+
             // Cierra el menú móvil al hacer clic en un enlace
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
             if (menuToggle && navMenu) {
                 menuToggle.classList.remove('open');
                 navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
             }
 
             window.scrollTo({ top: 0, behavior: 'instant' });
@@ -1688,6 +1953,17 @@
         function updateCharCount(textarea) {
             const counter = document.getElementById('charCounter');
             counter.textContent = `${textarea.value.length} / 1000 caracteres`;
+        }
+
+        /* MODAL DE ZOOM */
+        function openZoomModal() {
+            document.getElementById('zoomModal').classList.add('active');
+            document.body.classList.add('menu-open');
+        }
+
+        function closeZoomModal() {
+            document.getElementById('zoomModal').classList.remove('active');
+            document.body.classList.remove('menu-open');
         }
 
         // LÓGICA DE CARRUSEL NOTICIAS
@@ -1888,6 +2164,7 @@
 
             lightboxCaption.textContent = captionText;
             lightbox.classList.add('active');
+            document.body.classList.add('menu-open');
         }
 
         function showLightboxImage() {
@@ -1920,6 +2197,7 @@
 
             lightboxCaption.textContent = caption ? caption.textContent : '';
             lightbox.classList.add('active');
+            document.body.classList.add('menu-open');
         }
 
         function navigateLightbox(event, direction) {
@@ -1934,6 +2212,7 @@
             if (lightbox) lightbox.classList.remove('active');
             const mediaContainer = document.getElementById('lightbox-media-container');
             if (mediaContainer) mediaContainer.innerHTML = '';
+            document.body.classList.remove('menu-open');
         }
 
         // CONTROLADOR GLOBAL DE TECLADO
@@ -1946,8 +2225,9 @@
             if (e.key === 'Escape' || e.key === 'Esc') {
                 if (isLightboxActive) {
                     closeLightbox();
-                } else if (document.activeElement) {
-                    document.activeElement.blur();
+                } else {
+                    closeZoomModal();
+                    if (document.activeElement) document.activeElement.blur();
                 }
                 return;
             }
